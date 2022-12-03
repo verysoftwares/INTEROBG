@@ -82,6 +82,9 @@ function header_draw()
     if stage==7 then msg='double trouble?!' end
     if stage==8 then msg='who\'s afraid of circles?!' end
     if stage==9 then msg='yikes?!' end
+    if stage==10 then msg='do you know streaming?!' end
+    if stage==11 then msg='do you feel targeted?!' end
+    if stage==12 then msg='that yellow bullet looks like it wants a hug?!' end
     if stage>maxstages() and stage~=25 and stage~=26 then msg='you\'re not supposed to be here yet?! go back with Esc?!' end
     if stage==26 then msg='BIG BAD INCOMING?!' end
 
