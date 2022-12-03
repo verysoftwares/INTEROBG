@@ -3,14 +3,12 @@
 function stage1()
     -- stage 1 doesn't use shared bullet update
     for i=#bullets,1,-1 do
-        --if t>60 then rem(bullets,i) end
         bullets[i].x=160+bullets[i][1]*cos(t*0.004*8.8+pi/2)
         bullets[i].y=100+bullets[i][1]*sin(t*0.004*8.8+pi/2)
     end
 end
 
 function stage2()
-    --if t%3==0 then
     while t-lastspawn>=3 do
         lastspawn=lastspawn+3
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(lastspawn*0.4)*0.2*8.8,dy=sin(lastspawn*0.4)*0.2*8.8,bt=lastspawn})
