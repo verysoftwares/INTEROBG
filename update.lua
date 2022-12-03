@@ -112,6 +112,7 @@ function wait()
         love.draw=menu_draw
         bullets={}
         lastspawn=t
+        spec={}
     end
 end
 

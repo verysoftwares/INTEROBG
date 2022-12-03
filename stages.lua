@@ -1,5 +1,7 @@
 -- bullet spawning logic
 
+spec={}
+
 function stage1()
     -- stage 1 doesn't use shared bullet update
     for i=#bullets,1,-1 do
@@ -89,6 +91,57 @@ function stage9()
         ins(bullets,{x=320/2+40,y=200/2-40,dx=-cos(lastspawn*0.41*acc-i*sep)*0.15*8.8,dy=-sin(lastspawn*0.41*acc-i*sep)*0.15*8.8,bt=lastspawn})
         end
     end
+end
+
+function stage10()
+    while t-lastspawn>=3 do
+        --[[if lastspawn%48<24 then
+        ins(bullets,{x=320/2-40+cos(lastspawn*0.12)*34,y=200/2-40,bt=lastspawn})
+        else
+        ins(bullets,{x=320/2+40-cos(lastspawn*0.12)*34,y=200/2-40,bt=lastspawn})
+        end]]
+        ins(bullets,{x=320/2,y=200/2-40,dx=cos(lastspawn*131.1)*0.1*8.8,dy=sin(lastspawn*131.1)*0.1*8.8,bt=lastspawn})
+        if lastspawn%48<12 then
+        local a=math.atan2(y-bullets[#bullets].y,x-bullets[#bullets].x)
+        bullets[#bullets].dx=cos(a)*0.2*8.8
+        bullets[#bullets].dy=sin(a)*0.2*8.8
+        end
+        lastspawn=lastspawn+3
+    end
+end
+
+function stage11()
+    while t-lastspawn>=3 do
+        ins(bullets,{x=320/2,y=200/2-40,dx=cos(lastspawn*5.12)*0.2*8.8,dy=sin(lastspawn*5.12)*0.2*8.8,bt=lastspawn})
+        if lastspawn%48<24 then
+        ins(bullets,{x=320/2-40+cos(lastspawn*0.12)*34,y=200/2-40,bt=lastspawn})
+        local a=math.atan2(y-bullets[#bullets].y,x-bullets[#bullets].x)
+        bullets[#bullets].dx=cos(a)*0.2*8.8
+        bullets[#bullets].dy=sin(a)*0.2*8.8
+        else
+        ins(bullets,{x=320/2+40+cos(lastspawn*0.12)*34,y=200/2-40,bt=lastspawn})
+        local a=math.atan2(y-bullets[#bullets].y,x-bullets[#bullets].x)
+        bullets[#bullets].dx=cos(a)*0.2*8.8
+        bullets[#bullets].dy=sin(a)*0.2*8.8
+        end
+        lastspawn=lastspawn+3
+    end
+end
+
+function stage12()
+    if not spec.homer then
+        spec.homer={x=320/2,y=200/2-40,bt=lastspawn}
+        ins(bullets,spec.homer)
+    end
+    
+    while t-lastspawn>=1 do
+        lastspawn=lastspawn+1
+        ins(bullets,{x=320/2,y=200/2-40,dx=cos(lastspawn*5.16)*0.12*8.8,dy=sin(lastspawn*5.16)*0.12*8.8,bt=lastspawn})
+    end
+
+    local a=math.atan2(y-spec.homer.y,x-spec.homer.x)
+    spec.homer.dx=cos(a)*0.06*8.8
+    spec.homer.dy=sin(a)*0.06*8.8
 end
 
 function stage25()

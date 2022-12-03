@@ -34,7 +34,7 @@ function circuit_lock()
         stage1() -- to initialize bullet x,y
     end
 
-    if DEBUG then bullets={}; stage=9 end
+    if DEBUG then bullets={}; stage=12 end
 end
 
 function circuit_preview()
@@ -44,6 +44,8 @@ function circuit_preview()
         stage4()
     elseif circuit==3 then
         stage7()
+    elseif circuit==4 then
+        stage11()
     end
     
     local bx,by=(60+12)*(circuit-1),16+8-2
@@ -108,13 +110,10 @@ end
 
 function number_draw(i)
     fg(0.8*255,0.8*255,0.8*255)
-    if i+1<4 and i+1~=circuit then
+    if i+1<=4 and i+1~=circuit then
         lg.print(i+1,20+(60+12)*i+2+20-4+8+3,16+8-2+50-30-10+12-1)
     end
-    if i+1>=4 or i+1+4>=5 then
-        if i+1>=4 then
-        lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50-30-10)
-        end
+    if i+1+4>=5 then
         if i+1+4>=5 then
         lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50+36+50-30-10)
         end
