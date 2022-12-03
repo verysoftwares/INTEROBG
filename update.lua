@@ -77,7 +77,9 @@ function collision_update()
     end
     if AABB(r.x,r.y,6,6,x+3-15,y+3-15,30,30) then
         if not r.grazed and not r.safe then
-        --score=score+tonumber(fmt('%.3d',flr(100*tmult)))
+        -- score isn't updated immediately:
+        -- you have to wait for the score label to
+        -- reach the score counter.
         ins(labels,{x=r.x,y=r.y,tonumber(fmt('%.3d',flr(100*tmult+0.5)))})
         r.grazed=true
         end

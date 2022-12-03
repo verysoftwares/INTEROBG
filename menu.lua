@@ -34,7 +34,6 @@ function circuit_lock()
         stage1() -- to initialize bullet x,y
     end
 
-    --if DEBUG then bullets={}; stage=25; score=hiscores[circuit]+1 end
     if DEBUG then bullets={}; stage=9 end
 end
 
