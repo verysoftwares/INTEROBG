@@ -34,7 +34,7 @@ function stage_update()
 end
 
 function timer_update()
-    if stage<=9 then
+    if stage<=maxstages() then
         timer=timer-1
         if timer<=0 then
             timer=15*60
@@ -106,11 +106,22 @@ end
 function wait()
     dt=love.timer.getTime()
     wt=wt-1
-    if wt==0 then --love.event.quit() 
+    if wt==0 then
         save_hiscores()
         love.update=menu_update
         love.draw=menu_draw
         bullets={}
         lastspawn=t
     end
+end
+
+function maxstages()
+    if not maxstage then
+    for i=1,24 do
+        local stageid=fmt('stage%d',i)
+        if _G[stageid] then maxstage=i
+        else break end
+    end
+    end
+    return maxstage
 end

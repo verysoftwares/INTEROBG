@@ -80,7 +80,7 @@ function header_draw()
     if stage==7 then msg='double trouble?!' end
     if stage==8 then msg='who\'s afraid of circles?!' end
     if stage==9 then msg='yikes?!' end
-    if stage>9 and stage~=25 and stage~=26 then msg='you\'re not supposed to be here yet?! go back with Esc?!' end
+    if stage>maxstages() and stage~=25 and stage~=26 then msg='you\'re not supposed to be here yet?! go back with Esc?!' end
     if stage==26 then msg='BIG BAD INCOMING?!' end
 
     lg.print(msg,320/2-fn:getWidth(msg)/2+sin(t*0.004*8.8)*24,0)
