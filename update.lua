@@ -1,0 +1,114 @@
+function player_update()
+    local spd=0.2*4.8
+    if press('right') then x=x+spd; if not rtutor then rtutor=true end end
+    if press('left')  then x=x-spd; if not ltutor then ltutor=true end  end
+    if press('down')  then y=y+spd; if not dtutor then dtutor=true end  end
+    if press('up')    then y=y-spd; if not ututor then ututor=true end  end
+    if x>320-6 then x=320-6 end; if x<0 then x=0 end
+    if y>200-6 then y=200-6 end; if y<0 then y=0 end
+    
+    if press('pagedown') or (press('z') and not tapz) then tmult=tmult*0.991; if not pgshow then pgshow=true end; if not pgdtutor then pgdtutor=true end end
+    if not press('z') then tapz=false end
+    if press('pageup') or press('x') then tmult=tmult*(1/0.991); if not pgshow then pgshow=true end; if not pgututor then pgututor=true end end
+    
+    if (pgshow or (rtutor and ltutor and dtutor and ututor)) and not ftutor then
+        if stage==1 and (rtutor and ltutor and dtutor and ututor) then
+        ftutor=true
+        timer=15*60
+        stage=stage+1
+        bullets={}
+        lastspawn=t+tmult
+        elseif stage>1 then ftutor=true end
+    end
+end
+
+function stage_update()
+    -- bullet spawning logic
+    -- get function stage1..stage24 and execute it
+    local stageid=fmt('stage%d',stage)
+    if _G[stageid] then _G[stageid]() end
+
+    if stage~=1 then bullet_update() end
+
+    timer_update()
+end
+
+function timer_update()
+    if stage<=9 then
+        timer=timer-1
+        if timer<=0 then
+            timer=15*60
+            -- if last stage in cicruit then go to ending
+            -- if second last stage then go to boss announcement
+            if stage%3==0 then stage=25
+            elseif stage%3==2 then pendstage=stage+1; stage=26; timer=5*60; sc_t=t+tmult
+            else stage=stage+1 end
+            bullets={}
+            lastspawn=t+tmult
+        end 
+    end
+    if stage==26 then
+        timer=timer-1
+        if timer<=0 then
+            timer=15*60
+            stage=pendstage
+            bullets={}
+            lastspawn=t+tmult
+        end 
+    end
+end
+
+function bullet_update()
+    for i=#bullets,1,-1 do
+        local b=bullets[i]
+        b.x=b.x+b.dx*(t-b.bt); b.y=b.y+b.dy*(t-b.bt)
+        b.bt=t
+        if b.x<-6-1 or b.y<-6-1 or b.x>=320+1 or b.y>=200+1 then
+            rem(bullets,i)
+        end
+    end
+end
+
+function collision_update()
+    -- dying and grazing
+    for i,r in ipairs(bullets) do
+    if not r.safe and AABB(r.x+1,r.y+1,4,4,x+1,y+1,4,4) then
+        love.update=wait; wt=120; shown_score=score; labels={}; break
+    end
+    if AABB(r.x,r.y,6,6,x+3-15,y+3-15,30,30) then
+        if not r.grazed and not r.safe then
+        --score=score+tonumber(fmt('%.3d',flr(100*tmult)))
+        ins(labels,{x=r.x,y=r.y,tonumber(fmt('%.3d',flr(100*tmult+0.5)))})
+        r.grazed=true
+        end
+    end
+    end
+end
+
+function score_update()
+    -- moving score labels
+    for i=#labels,1,-1 do
+        local l=labels[i]
+        l.x=l.x+(320-50-l.x)*0.1
+        l.y=l.y+(200-8-4-l.y)*0.1
+        if math.abs(320-50-l.x)<=1 and math.abs(200-8-4-l.y)<=1 then
+            score=score+l[1]
+            rem(labels,i)
+        end
+    end
+
+    shown_score=shown_score+(score-shown_score)*0.1
+    if shown_score>=score-1 then shown_score=score end
+end
+
+function wait()
+    dt=love.timer.getTime()
+    wt=wt-1
+    if wt==0 then --love.event.quit() 
+        save_hiscores()
+        love.update=menu_update
+        love.draw=menu_draw
+        bullets={}
+        lastspawn=t
+    end
+end
