@@ -95,11 +95,6 @@ end
 
 function stage10()
     while t-lastspawn>=3 do
-        --[[if lastspawn%48<24 then
-        ins(bullets,{x=320/2-40+cos(lastspawn*0.12)*34,y=200/2-40,bt=lastspawn})
-        else
-        ins(bullets,{x=320/2+40-cos(lastspawn*0.12)*34,y=200/2-40,bt=lastspawn})
-        end]]
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(lastspawn*131.1)*0.1*8.8,dy=sin(lastspawn*131.1)*0.1*8.8,bt=lastspawn})
         if lastspawn%48<12 then
         local a=math.atan2(y-bullets[#bullets].y,x-bullets[#bullets].x)
