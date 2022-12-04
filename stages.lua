@@ -144,6 +144,8 @@ function stage12()
     spec.homer.dy=sin(a)*0.06*8.8
 end
 
+-- victory screen
+-- shows fireworks if you made a high score
 function stage25()
     if score>hiscores[circuit] then
         while t-lastspawn>=12 do

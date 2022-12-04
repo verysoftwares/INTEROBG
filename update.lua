@@ -38,7 +38,7 @@ function timer_update()
         timer=timer-1
         if timer<=0 then
             timer=15*60
-            -- if last stage in cicruit then go to ending
+            -- if last stage in cicruit then go to victory screen
             -- if second last stage then go to boss announcement
             if stage%3==0 then stage=25
             elseif stage%3==2 then pendstage=stage+1; stage=26; timer=5*60; sc_t=t+tmult
