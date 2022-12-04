@@ -45,6 +45,7 @@ function overlay_draw()
 end
 
 function tutor_draw()
+    if stage==27 then return end
     local fn=lg.getFont()
     
     fg(0.8*255,0.8*255,0.8*255)
@@ -87,6 +88,7 @@ function header_draw()
     if stage==12 then msg='that yellow bullet looks like it wants a hug?!' end
     if stage>maxstages() and stage~=25 and stage~=26 then msg='you\'re not supposed to be here yet?! go back with Esc?!' end
     if stage==26 then msg='BIG BAD INCOMING?!' end
+    if stage==27 then msg=skip_msg end
 
     lg.print(msg,320/2-fn:getWidth(msg)/2+sin(t*0.004*8.8)*24,0)
 end
@@ -105,19 +107,32 @@ function score_draw()
     lg.print(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)),320-fn:getWidth(fmt('%.9d',flr(shown_score)))-fn:getWidth(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)))-4,200-8-4)
 end
 
-function bosscall_draw()
+function special_draw()
+    if stage==26 then
+        call_draw('BOSS')
+    end
+    if stage==27 then
+        call_draw('SKIP')
+    end
+end
+
+-- animated banner
+function call_draw(msg)
     local fn=lg.getFont()
+
+    local tx=-11
+    if msg=='SKIP' then tx=-10 end
 
     for i=0,24 do
     if i%2==0 then
         fg(0.4*255,0.8*255,0.4*255)
     else
         fg(0.4*255,0.8*255,0.4*255)
-        rect('fill',-(t-sc_t)+i*fn:getWidth('BOSS'),24+6,fn:getWidth('BOSS'),fn:getHeight('BOSS'))
-        rect('fill',-11*fn:getWidth('BOSS')+(t-sc_t)+i*fn:getWidth('BOSS'),200-24-6-fn:getHeight('BOSS'),fn:getWidth('BOSS'),fn:getHeight('BOSS'))
+        rect('fill',-(t-sc_t)+i*fn:getWidth(msg),24+6,fn:getWidth(msg),fn:getHeight(msg))
+        rect('fill',tx*fn:getWidth(msg)+(t-sc_t)+i*fn:getWidth(msg),200-24-6-fn:getHeight(msg),fn:getWidth(msg),fn:getHeight(msg))
         fg(0.1*255,0.1*255,0.1*255)
     end
-    lg.print('BOSS',-(t-sc_t)+i*fn:getWidth('BOSS'),24+6)
-    lg.print('BOSS',-11*fn:getWidth('BOSS')+(t-sc_t)+i*fn:getWidth('BOSS'),200-24-6-fn:getHeight('BOSS'))
+    lg.print(msg,-(t-sc_t)+i*fn:getWidth(msg),24+6)
+    lg.print(msg,tx*fn:getWidth(msg)+(t-sc_t)+i*fn:getWidth(msg),200-24-6-fn:getHeight(msg))
     end
 end

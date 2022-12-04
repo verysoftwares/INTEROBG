@@ -46,9 +46,7 @@ function main_draw()
 
     score_draw()
 
-    if stage==26 then
-        bosscall_draw()
-    end
+    special_draw()
 
     while love.timer.getTime()-dt<1/60 do
     end

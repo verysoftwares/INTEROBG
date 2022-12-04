@@ -14,8 +14,11 @@ function player_update()
     if (pgshow or (rtutor and ltutor and dtutor and ututor)) and not ftutor then
         if stage==1 and (rtutor and ltutor and dtutor and ututor) then
         ftutor=true
-        timer=15*60
-        stage=stage+1
+        timer=5*60
+        pendstage=stage+1
+        stage=27
+        skip_msg='SKIP: movement tutorial complete?!'
+        sc_t=t+tmult
         bullets={}
         lastspawn=t+tmult
         elseif stage>1 then ftutor=true end
@@ -47,7 +50,7 @@ function timer_update()
             lastspawn=t+tmult
         end 
     end
-    if stage==26 then
+    if stage==26 or stage==27 then
         timer=timer-1
         if timer<=0 then
             timer=15*60
