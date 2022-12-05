@@ -64,8 +64,7 @@ function menu_header_draw()
     fg(0.4*255,0.8*255,0.4*255)
     rect('fill',0,0,320,10)
     fg(0.1*255,0.1*255,0.1*255)
-    local fn=lg.getFont()
-    lg.print('select circuit?! arrows and Z?!',320/2-fn:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,1)
+    lg.print('select circuit?! arrows and Z?!',320/2-font:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,1)
 end
 
 function rect_draw(i)

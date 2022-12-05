@@ -1,3 +1,5 @@
+font=lg.getFont()
+
 function bullet_draw(bl)
     local r,g,b=0.4,0.8,0.4
     
@@ -5,7 +7,7 @@ function bullet_draw(bl)
     if bl.grazed then r,g,b=0.4,0.4,0.8 end
     if not bl.safe and AABB(bl.x+1,bl.y+1,4,4,x+1,y+1,4,4) then r,g,b=0.8,0.8,0.8 end
     if bl.safe then r,g,b=0.8,0.4,0.4 end
-    
+
     -- bullet body
     fg(r*255,g*255,b*255)
     rect('fill',bl.x,bl.y,6,6)
@@ -46,26 +48,23 @@ end
 
 function tutor_draw()
     if stage==27 then return end
-    local fn=lg.getFont()
     
     fg(0.8*255,0.8*255,0.8*255)
     if not pgshow then
     if not rtutor then lg.print('Right',x+6+3,y-2) end
-    if not ltutor then lg.print('Left',x-fn:getWidth('Left')-2,y-2) end
-    if not ututor then lg.print('Up',x+3-fn:getWidth('Up')/2,y-fn:getHeight('Up')) end
-    if not dtutor then lg.print('Down',x+3-fn:getWidth('Down')/2,y+6+1) end
+    if not ltutor then lg.print('Left',x-font:getWidth('Left')-2,y-2) end
+    if not ututor then lg.print('Up',x+3-font:getWidth('Up')/2,y-font:getHeight('Up')) end
+    if not dtutor then lg.print('Down',x+3-font:getWidth('Down')/2,y+6+1) end
     end
     if ftutor and not pgdtutor and not pgututor then
-        lg.print('Z',x+3-fn:getWidth('Z')/2,y+6+1)
+        lg.print('Z',x+3-font:getWidth('Z')/2,y+6+1)
     end
     if pgdtutor and not pgututor then
-        lg.print('X',x+3-fn:getWidth('X')/2,y-fn:getHeight('X'))
+        lg.print('X',x+3-font:getWidth('X')/2,y-font:getHeight('X'))
     end
 end
 
 function header_draw()
-    local fn=lg.getFont()
-
     fg(0.4*255,0.8*255,0.4*255)
     rect('fill',0,0,320,10)
 
@@ -90,21 +89,19 @@ function header_draw()
     if stage==26 then msg='BIG BAD INCOMING?!' end
     if stage==27 then msg=skip_msg end
 
-    lg.print(msg,320/2-fn:getWidth(msg)/2+sin(t*0.004*8.8)*24,0)
+    lg.print(msg,320/2-font:getWidth(msg)/2+sin(t*0.004*8.8)*24,0)
 end
 
 function score_draw()
-    local fn=lg.getFont()
-
     fg(0.8*255,0.4*255,0.4*255)
     for i,l in ipairs(labels) do
         lg.print(fmt('%.3d',l[1]),l.x,l.y)
     end
 
-    lg.print(fmt('%.9d',flr(shown_score)),320-fn:getWidth(fmt('%.9d',flr(shown_score)))-4,200-8-4)
+    lg.print(fmt('%.9d',flr(shown_score)),320-font:getWidth(fmt('%.9d',flr(shown_score)))-4,200-8-4)
 
     fg(0.8*255,0.8*255,0.8*255)
-    lg.print(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)),320-fn:getWidth(fmt('%.9d',flr(shown_score)))-fn:getWidth(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)))-4,200-8-4)
+    lg.print(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)),320-font:getWidth(fmt('%.9d',flr(shown_score)))-font:getWidth(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)))-4,200-8-4)
 end
 
 function special_draw()
@@ -118,8 +115,6 @@ end
 
 -- animated banner
 function call_draw(msg)
-    local fn=lg.getFont()
-
     local tx=-11
     if msg=='SKIP' then tx=-10 end
 
@@ -128,11 +123,11 @@ function call_draw(msg)
         fg(0.4*255,0.8*255,0.4*255)
     else
         fg(0.4*255,0.8*255,0.4*255)
-        rect('fill',-(t-lastspawn)+i*fn:getWidth(msg),24+6,fn:getWidth(msg),fn:getHeight(msg))
-        rect('fill',tx*fn:getWidth(msg)+(t-lastspawn)+i*fn:getWidth(msg),200-24-6-fn:getHeight(msg),fn:getWidth(msg),fn:getHeight(msg))
+        rect('fill',-(t-lastspawn)+i*font:getWidth(msg),24+6,font:getWidth(msg),font:getHeight(msg))
+        rect('fill',tx*font:getWidth(msg)+(t-lastspawn)+i*font:getWidth(msg),200-24-6-font:getHeight(msg),font:getWidth(msg),font:getHeight(msg))
         fg(0.1*255,0.1*255,0.1*255)
     end
-    lg.print(msg,-(t-lastspawn)+i*fn:getWidth(msg),24+6)
-    lg.print(msg,tx*fn:getWidth(msg)+(t-lastspawn)+i*fn:getWidth(msg),200-24-6-fn:getHeight(msg))
+    lg.print(msg,-(t-lastspawn)+i*font:getWidth(msg),24+6)
+    lg.print(msg,tx*font:getWidth(msg)+(t-lastspawn)+i*font:getWidth(msg),200-24-6-font:getHeight(msg))
     end
 end
