@@ -1,6 +1,3 @@
---[[ anti-anti-alias. ]]--
-
-
 -- some first-class game programming tools. 
 -- i don't wanna explicitly type these out every time,
 -- so i have these handy variable names instead.
@@ -9,6 +6,8 @@
     fg      = lg.setColor
     sin     = math.sin
     cos     = math.cos
+    atan2   = math.atan2
+    sqrt    = math.sqrt
     ins     = table.insert
     shade   = lg.setShader
     flr     = math.floor

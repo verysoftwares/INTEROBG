@@ -4,7 +4,7 @@ function save_hiscores()
         hiscores[circuit]=score
         local out='hiscores={'
         for i,h in ipairs(hiscores) do out=out..tostring(h)..',' end
-        out=sub(out,1,#out-1)
+        out=sub(out,1,#out-1) -- get rid of last comma
         out=out..'}'
         love.filesystem.write('HI.SCO',out)
     end
