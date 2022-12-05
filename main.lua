@@ -33,6 +33,7 @@ function love.keypressed(key)
     end
 end
 
+-- implementations in draw.lua
 function main_draw()
     bg(0.1*255,0.1*255,0.1*255)
 
@@ -52,6 +53,7 @@ function main_draw()
     end
 end
 
+-- implementations in update.lua
 function main_update()
     dt=love.timer.getTime()
     
@@ -66,6 +68,7 @@ function main_update()
     t=t+tmult
 end
 
+-- implementations in menu.lua
 function menu_draw()
     bg(0.1*255,0.1*255,0.1*255)
     
@@ -85,6 +88,7 @@ function menu_draw()
     end
 end
 
+-- implementations in menu.lua
 function menu_update()
     dt=love.timer.getTime()
 
