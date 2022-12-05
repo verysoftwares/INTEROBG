@@ -1,8 +1,8 @@
 function circuit_select()
-    if tapped('right') then circuit=circuit+1; lastspawn=t+1; bullets={} end
-    if tapped('left')  then circuit=circuit-1; lastspawn=t+1; bullets={} end
-    if tapped('up')    then circuit=circuit-4; lastspawn=t+1; bullets={} end
-    if tapped('down')  then circuit=circuit+4; lastspawn=t+1; bullets={} end
+    if tapped('right') then circuit=circuit+1; spawn_t=t+1; bullets={} end
+    if tapped('left')  then circuit=circuit-1; spawn_t=t+1; bullets={} end
+    if tapped('up')    then circuit=circuit-4; spawn_t=t+1; bullets={} end
+    if tapped('down')  then circuit=circuit+4; spawn_t=t+1; bullets={} end
     if circuit<1 then circuit=circuit+8 end
     if circuit>8 then circuit=circuit-8 end
     if tapped('z') then circuit_lock() end
@@ -23,7 +23,7 @@ function circuit_lock()
     t=0
     tmult=1
     timer=15*60
-    lastspawn=0
+    spawn_t=0
 
     x=160+30*2*cos(pi/2)
     y=100+30*2*sin(pi/2)

@@ -15,12 +15,12 @@ function player_update()
         if stage==1 and (rtutor and ltutor and dtutor and ututor) then
         ftutor=true
         timer=5*60
-        pendstage=stage+1
+        pend_stage=stage+1
         stage=27
         skip_msg='SKIP: movement tutorial complete?!'
         sc_t=t+tmult
         bullets={}
-        lastspawn=t+tmult
+        spawn_t=t+tmult
         elseif stage>1 then ftutor=true end
     end
 end
@@ -44,19 +44,19 @@ function timer_update()
             -- if last stage in cicruit then go to victory screen
             -- if second last stage then go to boss announcement
             if stage%3==0 then stage=25
-            elseif stage%3==2 then pendstage=stage+1; stage=26; timer=5*60; 
+            elseif stage%3==2 then pend_stage=stage+1; stage=26; timer=5*60; 
             else stage=stage+1 end
             bullets={}
-            lastspawn=t+tmult
+            spawn_t=t+tmult
         end 
     end
     if stage==26 or stage==27 then
         timer=timer-1
         if timer<=0 then
             timer=15*60
-            stage=pendstage
+            stage=pend_stage
             bullets={}
-            lastspawn=t+tmult
+            spawn_t=t+tmult
         end 
     end
 end
@@ -114,7 +114,7 @@ function wait()
         love.update=menu_update
         love.draw=menu_draw
         bullets={}
-        lastspawn=t
+        spawn_t=t
         spec={}
     end
 end

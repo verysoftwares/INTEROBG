@@ -123,11 +123,11 @@ function call_draw(msg)
         fg(0.4*255,0.8*255,0.4*255)
     else
         fg(0.4*255,0.8*255,0.4*255)
-        rect('fill',-(t-lastspawn)+i*font:getWidth(msg),24+6,font:getWidth(msg),font:getHeight(msg))
-        rect('fill',tx*font:getWidth(msg)+(t-lastspawn)+i*font:getWidth(msg),200-24-6-font:getHeight(msg),font:getWidth(msg),font:getHeight(msg))
+        rect('fill',-(t-spawn_t)+i*font:getWidth(msg),24+6,font:getWidth(msg),font:getHeight(msg))
+        rect('fill',tx*font:getWidth(msg)+(t-spawn_t)+i*font:getWidth(msg),200-24-6-font:getHeight(msg),font:getWidth(msg),font:getHeight(msg))
         fg(0.1*255,0.1*255,0.1*255)
     end
-    lg.print(msg,-(t-lastspawn)+i*font:getWidth(msg),24+6)
-    lg.print(msg,tx*font:getWidth(msg)+(t-lastspawn)+i*font:getWidth(msg),200-24-6-font:getHeight(msg))
+    lg.print(msg,-(t-spawn_t)+i*font:getWidth(msg),24+6)
+    lg.print(msg,tx*font:getWidth(msg)+(t-spawn_t)+i*font:getWidth(msg),200-24-6-font:getHeight(msg))
     end
 end

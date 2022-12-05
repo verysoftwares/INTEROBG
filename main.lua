@@ -15,7 +15,7 @@ labels={}
 t=0
 tmult=1
 timer=15*60
-lastspawn=0
+spawn_t=0
 
 x=160+30*2*cos(pi/2)
 y=100+30*2*sin(pi/2)
