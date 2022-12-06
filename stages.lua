@@ -139,6 +139,25 @@ function stage12()
     spec.homer.dy=sin(a)*0.06*8.8
 end
 
+function stage15()
+    while t-spawn_t>=16 do
+        local a2=spawn_t*0.2
+        for j=0,4-1 do
+        local ox,oy
+        ox=-cos(a2+pi/2+pi/2*j)*20
+        oy=-sin(a2+pi/2+pi/2*j)*20
+        for i=0,8-1 do
+            local a,d
+            ins(bullets,{x=320/2-ox-cos(a2+pi/2*j)*20+i*5*cos(a2+pi/2*j),y=200/2-20-oy-sin(a2+pi/2*j)*20+i*5*sin(a2+pi/2*j),dx=0,dy=-1,bt=spawn_t+16})
+            d=sqrt((bullets[#bullets].y-(200/2-20))^2+(bullets[#bullets].x-(320/2))^2)
+            a=atan2(bullets[#bullets].y-(200/2-20),bullets[#bullets].x-(320/2))
+            bullets[#bullets].dx=cos(a)*d*0.04; bullets[#bullets].dy=sin(a)*d*0.04
+        end
+        end
+        spawn_t=spawn_t+16
+    end
+end
+
 -- victory screen
 -- shows fireworks if you made a high score
 function stage25()
