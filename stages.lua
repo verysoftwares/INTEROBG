@@ -166,7 +166,7 @@ function stage25()
     if score>hiscores[circuit] then
         while t-spawn_t>=12 do
             for i=0,20-1 do
-            ins(bullets,{safe=true,x=320/2+cos(spawn_t*0.3)*34,y=200/2-40+sin(spawn_t*0.2)*12,dx=cos(i*2*math.pi/20)*0.1*8.8,dy=sin(i*2*math.pi/20)*0.1*8.8,bt=spawn_t})
+            ins(bullets,{safe=true,x=320/2+cos(spawn_t*0.3)*34,y=200/2-40+sin(spawn_t*0.2)*12,dx=cos(i*2*math.pi/20)*0.1*8.8,dy=sin(i*2*math.pi/20)*0.1*8.8,bt=spawn_t+12})
             end
             spawn_t=spawn_t+12
         end
