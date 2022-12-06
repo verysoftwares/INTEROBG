@@ -72,10 +72,6 @@ function header_draw()
     local msg='this is the 15th verysoftwares game this year?! aRE YOU SERIOUS?!'
     if stage==2 then msg='bullet time in a bullet hell?!' end
     if stage==3 then msg='how\'s this one for size?!' end
-    if stage==25 then 
-        if score>hiscores[circuit] then msg='congrats for a high score?! enjoy the fireworks & press Esc when ready?!'
-        else msg='congrats?! now go for a high score?! press Esc when ready?!' end
-    end
     if stage==4 then msg='graze graze graze?!' end
     if stage==5 then msg='faster faster faster?!' end
     if stage==6 then msg='expect nothing?!' end
@@ -85,9 +81,16 @@ function header_draw()
     if stage==10 then msg='do you know streaming?!' end
     if stage==11 then msg='do you feel targeted?!' end
     if stage==12 then msg='that yellow bullet looks like it wants a hug?!' end
-    if stage>maxstages() and stage~=25 and stage~=26 and stage~=27 then msg='you\'re not supposed to be here yet?! go back with Esc?!' end
+    if stage==25 then 
+        if score>hiscores[circuit] then msg='congrats for a high score?! enjoy the fireworks & press Esc when ready?!'
+        else msg='congrats?! now go for a high score?! press Esc when ready?!' end
+    end
     if stage==26 then msg='BIG BAD INCOMING?!' end
     if stage==27 then msg=skip_msg end
+
+    if stage>maxstages() and stage~=25 and stage~=26 and stage~=27 then 
+        msg='you\'re not supposed to be here yet?! go back with Esc?!' 
+    end
 
     lg.print(msg,320/2-font:getWidth(msg)/2+sin(t*0.004*8.8)*24,0)
 end
