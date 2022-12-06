@@ -139,6 +139,67 @@ function stage12()
     spec.homer.dy=sin(a)*0.06*8.8
 end
 
+function stage13()
+end
+
+local shape1=[[
+  xxxx
+ xxxxxx
+xxx  xxx
+xx    xx
+     xxx
+    xxx
+   xxx
+   xx
+   xx
+
+   xx
+   xx
+]]
+local shape2=[[
+ xx
+xxxx
+xxxx
+xxxx
+xxxx
+xxxx
+ xx
+ xx
+ xx
+
+ xx
+ xx
+]]
+
+function stage14()
+    while t-spawn_t>=33 do
+        local i=1
+        local tx,ty=0,0
+        local a=spawn_t*0.4+pi/2
+        local shape=shape1
+        if t%66<33 then
+        a=atan2(y-(200/2-40),x-(320/2))
+        shape=shape2
+        end
+        
+        while i<=#shape do
+            local char=sub(shape,i,i)
+            if char=='x' then
+                for i=0,3-1 do
+                local a2=a+i*2*pi/3
+                ins(bullets,{x=320/2-cos(a2)*20+cos(a2)*ty*5+cos(a2-pi/2)*tx*5,y=200/2-40-sin(a2)*20+sin(a2)*ty*5+sin(a2-pi/2)*tx*5,dx=cos(a2)*2.5,dy=sin(a2)*2.5,bt=spawn_t+33})
+                end
+            end
+            tx=tx+1
+            if char=='\n' then
+                tx=0; ty=ty+1
+            end
+            i=i+1
+        end
+        spawn_t=spawn_t+33
+    end
+end
+
 function stage15()
     while t-spawn_t>=99 do
         for k=0,3-1 do
