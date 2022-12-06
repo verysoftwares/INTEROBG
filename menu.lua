@@ -46,6 +46,8 @@ function circuit_preview()
         stage7()
     elseif circuit==4 then
         stage11()
+    elseif circuit==5 then
+        stage14()
     end
     
     local bx,by=(60+12)*(circuit-1),16+8-2
@@ -109,13 +111,14 @@ end
 
 function number_draw(i)
     fg(0.8*255,0.8*255,0.8*255)
-    if i+1<=4 and i+1~=circuit then
-        lg.print(i+1,20+(60+12)*i+2+20-4+8+3,16+8-2+50-30-10+12-1)
-    end
-    if i+1+4>=5 then
-        if i+1+4>=5 then
+
+    local nx=20+(60+12)*i+2+20-4+8+3
+    local ny=16+8-2+50-30-10+12-1
+    if i+1~=circuit then lg.print(i+1,nx,ny) end
+    if i+1+4==5 and i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny) end
+
+    if i+1+4>=6 then
         lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50+36+50-30-10)
-        end
     end
 end
 
