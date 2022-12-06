@@ -178,7 +178,7 @@ function stage14()
         local a=spawn_t*0.4+pi/2
         local shape=shape1
         if t%66<33 then
-        a=atan2(y-(200/2-40),x-(320/2))
+        a=atan2(y-(200/2-40),x-(320/2+10))
         shape=shape2
         end
         
