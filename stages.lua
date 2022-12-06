@@ -201,7 +201,7 @@ function stage14()
 end
 
 function stage15()
-    while t-spawn_t>=99 do
+    while t-spawn_t>=0 do
         for k=0,3-1 do
         local a2=spawn_t*0.2+k*pi/4
         for j=0,4-1 do
@@ -210,7 +210,7 @@ function stage15()
         oy=-sin(a2+pi/2+pi/2*j)*20
         for i=0,8-1 do
             local a,d
-            ins(bullets,{x=320/2-ox-90+k*90-cos(a2+pi/2*j)*20+i*5*cos(a2+pi/2*j),y=200/2-20-oy-sin(a2+pi/2*j)*20+i*5*sin(a2+pi/2*j),dx=0,dy=-1,bt=spawn_t+99})
+            ins(bullets,{x=320/2-ox-90+k*90-cos(a2+pi/2*j)*20+i*5*cos(a2+pi/2*j),y=200/2-20-oy-sin(a2+pi/2*j)*20+i*5*sin(a2+pi/2*j),dx=0,dy=-1,bt=spawn_t})
             d=sqrt((bullets[#bullets].y-(200/2-20))^2+(bullets[#bullets].x-(320/2-90+k*90))^2)
             a=atan2(bullets[#bullets].y-(200/2-20),bullets[#bullets].x-(320/2-90+k*90))
             bullets[#bullets].dx=cos(a)*d*0.032; bullets[#bullets].dy=sin(a)*d*0.032
