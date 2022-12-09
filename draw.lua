@@ -5,7 +5,7 @@ function bullet_draw(bl)
     
     if bl==spec.homer then r,g,b=0.8,0.8,0.4 end
     if bl.grazed then r,g,b=0.4,0.4,0.8 end
-    if not bl.safe and AABB(bl.x+1,bl.y+1,4,4,x+1,y+1,4,4) then r,g,b=0.8,0.8,0.8 end
+    if not bl.safe and AABB(bl.x+1,bl.y+1,4,4,x+1,y+1,3,3) then r,g,b=0.8,0.8,0.8 end
     if bl.safe then r,g,b=0.8,0.4,0.4 end
 
     -- bullet body
@@ -26,6 +26,9 @@ end
 function player_draw()
     fg(0.8*255,0.4*255,0.4*255)
     if love.update==wait then fg(0.8*255,0.8*255,0.8*255) end
+
+    rect('fill',x+1,y+1,3,3)
+
     line(x+2,y-2,x+2+5,y-2+9)
     line(x+2,y-2,x+2-5,y-2+9)
     line(x+2-5,y-2+9,x+2,y-2+7)
