@@ -65,20 +65,20 @@ function cubespin(ty)
     a=(t-spawn_t)*0.7 / 180*pi
     --rotation matrices
         matrotZ=mat4x4()
-        matrotZ[1][1]=cos(a)
-        matrotZ[1][2]=sin(a)
-        matrotZ[2][1]=-sin(a)
-        matrotZ[2][2]=cos(a)
-        matrotZ[3][3]=1
-        matrotZ[4][4]=1
+        matrotZ[1][1]=cos(a)*tmult
+        matrotZ[1][2]=sin(a)*tmult
+        matrotZ[2][1]=-sin(a)*tmult
+        matrotZ[2][2]=cos(a)*tmult
+        matrotZ[3][3]=tmult
+        matrotZ[4][4]=tmult
         
         matrotX=mat4x4()
-        matrotX[1][1]=1
-        matrotX[2][2]=cos(a*0.5)
-        matrotX[2][3]=sin(a*0.5)
-        matrotX[3][2]=-sin(a*0.5)
-        matrotX[3][3]=cos(a*0.5)
-        matrotX[4][4]=1
+        matrotX[1][1]=tmult
+        matrotX[2][2]=cos(a*0.5)*tmult
+        matrotX[2][3]=sin(a*0.5)*tmult
+        matrotX[3][2]=-sin(a*0.5)*tmult
+        matrotX[3][3]=cos(a*0.5)*tmult
+        matrotX[4][4]=tmult
     
     table.sort(spec.cube,function(a,b) return a.y<b.y end)
 
