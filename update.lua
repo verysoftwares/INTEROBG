@@ -18,10 +18,17 @@ function player_update()
         pend_stage=stage+1
         stage=27
         skip_msg='SKIP: movement tutorial complete?!'
-        sc_t=t+tmult
         bullets={}
         spawn_t=t+tmult
         elseif stage>1 then ftutor=true end
+    end
+    if stage==13 and all_grazed() then
+        timer=5*60
+        pend_stage=stage+1
+        stage=27
+        skip_msg='SKIP: all bullets grazed?!'
+        bullets={}
+        spawn_t=t+tmult
     end
 end
 

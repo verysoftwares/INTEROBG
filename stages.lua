@@ -139,6 +139,14 @@ function stage12()
     spec.homer.dy=sin(a)*0.06*8.8
 end
 
+function all_grazed()
+    if #bullets==0 then return false end
+    for i,b in ipairs(bullets) do
+        if not b.grazed then return false end
+    end
+    return true
+end
+
 require '3d'
 
 -- doesn't use shared bullet update
