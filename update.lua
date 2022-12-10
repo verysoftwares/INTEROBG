@@ -31,7 +31,7 @@ function stage_update()
     local stageid=fmt('stage%d',stage)
     if _G[stageid] then _G[stageid]() end
 
-    if stage~=1 then bullet_update() end
+    if stage~=1 and stage~=13 then bullet_update() end
 
     timer_update()
 end
@@ -75,7 +75,7 @@ end
 function collision_update()
     -- dying and grazing
     for i,r in ipairs(bullets) do
-    if not r.safe and AABB(r.x+1,r.y+1,4,4,x+1,y+1,3,3) then
+    if not r.safe and AABB(r.x+1,r.y+1,4,4,x+1,y+1+1,3,3) then
         love.update=wait; wt=120; shown_score=score; labels={}; break
     end
     if AABB(r.x,r.y,6,6,x+3-15,y+3-15,30,30) then

@@ -34,7 +34,7 @@ function circuit_lock()
         stage1() -- to initialize bullet x,y
     end
 
-    if DEBUG then bullets={}; stage=14 end
+    if DEBUG then bullets={}; stage=13 end
 end
 
 function circuit_preview()

@@ -2,8 +2,8 @@
 
 spec={}
 
+-- doesn't use shared bullet update
 function stage1()
-    -- stage 1 doesn't use shared bullet update
     for i=#bullets,1,-1 do
         bullets[i].x=160+bullets[i][1]*cos(t*0.004*8.8+pi/2)
         bullets[i].y=100+bullets[i][1]*sin(t*0.004*8.8+pi/2)
@@ -139,7 +139,12 @@ function stage12()
     spec.homer.dy=sin(a)*0.06*8.8
 end
 
+require '3d'
+
+-- doesn't use shared bullet update
 function stage13()
+    if not spec.cube then init_tris() end
+    cubespin(math.min((t-spawn_t)*1.25-210,-67))
 end
 
 local shape1=[[

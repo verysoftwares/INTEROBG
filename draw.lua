@@ -25,10 +25,13 @@ end
 
 function player_draw()
     fg(0.8*255,0.4*255,0.4*255)
+
+    fg(0.4*255,0.4*255,0.8*255)
     if love.update==wait then fg(0.8*255,0.8*255,0.8*255) end
+    rect('fill',x+1,y+1+1,3,3)
 
-    rect('fill',x+1,y+1,3,3)
-
+    fg(0.8*255,0.4*255,0.4*255)
+    if love.update==wait then fg(0.8*255,0.8*255,0.8*255) end
     line(x+2,y-2,x+2+5,y-2+9)
     line(x+2,y-2,x+2-5,y-2+9)
     line(x+2-5,y-2+9,x+2,y-2+7)
@@ -84,6 +87,9 @@ function header_draw()
     if stage==10 then msg='do you know streaming?!' end
     if stage==11 then msg='do you feel targeted?!' end
     if stage==12 then msg='that yellow bullet looks like it wants a hug?!' end
+    if stage==13 then msg='is this the demoscene?!' end
+    if stage==14 then msg='is this the title screen?!' end
+    if stage==15 then msg='i always knew it would be the squares that killed me?!' end
     if stage==25 then 
         if score>hiscores[circuit] then msg='congrats for a high score?! enjoy the fireworks & press Esc when ready?!'
         else msg='congrats?! now go for a high score?! press Esc when ready?!' end
