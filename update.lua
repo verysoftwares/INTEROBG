@@ -110,7 +110,7 @@ function score_update()
     end
 
     shown_score=shown_score+(score-shown_score)*0.1
-    if shown_score>=score-1 then shown_score=score end
+    if shown_score>score-0.5 then shown_score=score end
 end
 
 function wait()
