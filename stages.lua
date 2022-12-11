@@ -191,10 +191,11 @@ function stage14()
         local tx,ty=0,0
         local a=spawn_t*0.4+pi/2
         local shape=shape1
-        if t%66<33 then
+        if spec.firstshape then
         a=atan2(y-(200/2-40),x-(320/2))
         shape=shape2
         end
+        spec.firstshape=not spec.firstshape
         
         while i<=#shape do
             local char=sub(shape,i,i)
