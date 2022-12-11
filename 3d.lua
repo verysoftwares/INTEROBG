@@ -62,9 +62,9 @@ function init_tris()
 end
 
 function cubespin(ty)
-    a=(t-spawn_t)*0.7 / 180*pi
+    local a=(t-spawn_t)*0.7 / 180*pi
     --rotation matrices
-    matrotZ=mat4x4()
+    local matrotZ=mat4x4()
     matrotZ[1][1]=cos(a)*tmult
     matrotZ[1][2]=sin(a)*tmult
     matrotZ[2][1]=-sin(a)*tmult
@@ -72,7 +72,7 @@ function cubespin(ty)
     matrotZ[3][3]=tmult
     matrotZ[4][4]=tmult
     
-    matrotX=mat4x4()
+    local matrotX=mat4x4()
     matrotX[1][1]=tmult
     matrotX[2][2]=cos(a*0.5)*tmult
     matrotX[2][3]=sin(a*0.5)*tmult
