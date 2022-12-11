@@ -28,6 +28,8 @@ function circuit_lock()
     x=160+30*2*cos(pi/2)
     y=100+30*2*sin(pi/2)
 
+    spec={}
+
     if circuit==1 then
         bullets={{10*2,120},{20*2,160},{40*2,180}}
         rtutor=nil; ltutor=nil; dtutor=nil; ututor=nil; ftutor=nil; pgshow=nil; pgututor=nil; pgdtutor=nil
