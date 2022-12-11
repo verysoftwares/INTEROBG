@@ -4,8 +4,8 @@ function player_update()
     if press('left')  then x=x-spd; if not ltutor then ltutor=true end  end
     if press('down')  then y=y+spd; if not dtutor then dtutor=true end  end
     if press('up')    then y=y-spd; if not ututor then ututor=true end  end
-    if x>320-6 then x=320-6 end; if x<0 then x=0 end
-    if y>200-6 then y=200-6 end; if y<0 then y=0 end
+    if x+1>320-3 then x=320-3-1 end; if x+1<0 then x=-1 end
+    if y+1+1>200-3 then y=200-3-2 end; if y+1+1<0 then y=-2 end
     
     if press('pagedown') or (press('z') and not tapz) then tmult=tmult*0.991; if not pgshow then pgshow=true end; if not pgdtutor then pgdtutor=true end end
     if not press('z') then tapz=false end
