@@ -41,6 +41,7 @@ function init_tris()
         pt.y=pt.y-0.5
         ins(bullets,{})
         pt.host=bullets[#bullets]
+        bullets[#bullets].pt=pt
     end
 
     --projection matrix
@@ -91,6 +92,7 @@ function cubespin(ty)
         vec_mat_mult(pt_rotZ,pt_rotZX,matrotX)
 
         pt_rotZX.z=pt_rotZX.z+1.8
+        pt.z2=pt_rotZX.z
         
         local pt_project=point()
         vec_mat_mult(pt_rotZX,pt_project,projmat)

@@ -153,6 +153,7 @@ require '3d'
 function stage13()
     if not spec.cube then init_tris() end
     cubespin(math.min((t-spawn_t)*1.25-210,-67))
+    table.sort(bullets,function(a,b) return a.pt.z2>b.pt.z2 end)
 end
 
 local shape1=[[
