@@ -43,7 +43,7 @@ function init_tris()
         pt.host=bullets[#bullets]
     end
 
---projection matrix
+    --projection matrix
     projmat = mat4x4()
     --rendering limits
     local near=0.1        --near..
@@ -64,24 +64,22 @@ end
 function cubespin(ty)
     a=(t-spawn_t)*0.7 / 180*pi
     --rotation matrices
-        matrotZ=mat4x4()
-        matrotZ[1][1]=cos(a)*tmult
-        matrotZ[1][2]=sin(a)*tmult
-        matrotZ[2][1]=-sin(a)*tmult
-        matrotZ[2][2]=cos(a)*tmult
-        matrotZ[3][3]=tmult
-        matrotZ[4][4]=tmult
-        
-        matrotX=mat4x4()
-        matrotX[1][1]=tmult
-        matrotX[2][2]=cos(a*0.5)*tmult
-        matrotX[2][3]=sin(a*0.5)*tmult
-        matrotX[3][2]=-sin(a*0.5)*tmult
-        matrotX[3][3]=cos(a*0.5)*tmult
-        matrotX[4][4]=tmult
+    matrotZ=mat4x4()
+    matrotZ[1][1]=cos(a)*tmult
+    matrotZ[1][2]=sin(a)*tmult
+    matrotZ[2][1]=-sin(a)*tmult
+    matrotZ[2][2]=cos(a)*tmult
+    matrotZ[3][3]=tmult
+    matrotZ[4][4]=tmult
     
-    table.sort(spec.cube,function(a,b) return a.y<b.y end)
-
+    matrotX=mat4x4()
+    matrotX[1][1]=tmult
+    matrotX[2][2]=cos(a*0.5)*tmult
+    matrotX[2][3]=sin(a*0.5)*tmult
+    matrotX[3][2]=-sin(a*0.5)*tmult
+    matrotX[3][3]=cos(a*0.5)*tmult
+    matrotX[4][4]=tmult
+    
     for i,pt in ipairs(spec.cube) do
         --projecting from 3D space to 2D space
         --making x,y meaningful in pt_project
