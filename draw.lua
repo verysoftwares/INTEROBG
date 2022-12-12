@@ -5,7 +5,7 @@ function bullet_draw(bl)
     
     if bl==spec.homer then r,g,b=0.8,0.8,0.4 end
     if bl.grazed then r,g,b=0.4,0.4,0.8 end
-    if not bl.safe and AABB(bl.x+1,bl.y+1,4,4,x+1,y+1,3,3) then r,g,b=0.8,0.8,0.8 end
+    if not bl.safe and AABB(bl.x+1,bl.y+1,4,4,x+1,y+1+1,3,3) then r,g,b=0.8,0.8,0.8 end
     if bl.safe then r,g,b=0.8,0.4,0.4 end
 
     -- bullet body
