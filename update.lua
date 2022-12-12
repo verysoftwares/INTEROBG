@@ -19,6 +19,7 @@ function player_update()
         stage=27
         skip_msg='SKIP: movement tutorial complete?!'
         bullets={}
+        spec={}
         spawn_t=t+tmult
         elseif stage>1 then ftutor=true end
     end
@@ -28,6 +29,7 @@ function player_update()
         stage=27
         skip_msg='SKIP: all bullets grazed?!'
         bullets={}
+        spec={}
         spawn_t=t+tmult
     end
 end
@@ -38,7 +40,7 @@ function stage_update()
     local stageid=fmt('stage%d',stage)
     if _G[stageid] then _G[stageid]() end
 
-    if stage~=1 and stage~=13 then bullet_update() end
+    if stage~=1 and stage~=13 --[[and stage~=16]] then bullet_update() end
 
     timer_update()
 end
@@ -48,12 +50,22 @@ function timer_update()
         timer=timer-1
         if timer<=0 then
             timer=15*60
-            -- if last stage in cicruit then go to victory screen
+            -- if last stage in circuit then go to victory screen
             -- if second last stage then go to boss announcement
             if stage%3==0 then stage=25
             elseif stage%3==2 then pend_stage=stage+1; stage=26; timer=5*60; 
             else stage=stage+1 end
+            
             bullets={}
+
+            -- persistent bullets (circuit 6)
+            local old_pb=spec.pb
+            if spec.pb then for i,b in ipairs(spec.pb) do
+                ins(bullets,b)
+            end end
+            spec={}
+            spec.pb=old_pb
+
             spawn_t=t+tmult
         end 
     end
@@ -63,6 +75,7 @@ function timer_update()
             timer=15*60
             stage=pend_stage
             bullets={}
+            spec={}
             spawn_t=t+tmult
         end 
     end
@@ -103,7 +116,7 @@ function score_update()
         local l=labels[i]
         l.x=l.x+(320-50-l.x)*0.1
         l.y=l.y+(200-8-4-l.y)*0.1
-        if math.abs(320-50-l.x)<=1 and math.abs(200-8-4-l.y)<=1 then
+        if abs(320-50-l.x)<=1 and abs(200-8-4-l.y)<=1 then
             score=score+l[1]
             rem(labels,i)
         end

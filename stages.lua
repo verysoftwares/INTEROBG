@@ -236,6 +236,73 @@ function stage15()
     end
 end
 
+--[[
+-- doesn't use shared bullet update
+function stage16()
+    spec.bullet_formations=spec.bullet_formations or {}
+    while t-spawn_t>=24 do
+        local a=spawn_t*0.8
+        ins(spec.bullet_formations,{})
+        for i=0,8-1 do
+        ins(bullets,{x=320/2+cos(i*(pi*2/8))*8,y=200/2-40+sin(i*(pi*2/8))*8,bt=spawn_t+24})
+        ins(spec.bullet_formations[#spec.bullet_formations],bullets[#bullets])
+        spec.bullet_formations[#spec.bullet_formations].x=320/2
+        spec.bullet_formations[#spec.bullet_formations].y=200/2-40
+        spec.bullet_formations[#spec.bullet_formations].dx=cos(a)*1.6
+        spec.bullet_formations[#spec.bullet_formations].dy=sin(a)*1.6
+        spec.bullet_formations[#spec.bullet_formations].bt=spawn_t+24
+        spec.bullet_formations[#spec.bullet_formations].spawn_t=spawn_t+24
+        end
+        spawn_t=spawn_t+24
+    end
+    for j,form in ipairs(spec.bullet_formations) do
+    for i,b in ipairs(form) do
+        b.x=b.x+form.dx*(t-b.bt); b.y=b.y+form.dy*(t-b.bt)
+        b.bt=t
+    end
+    for i,b in ipairs(form) do
+        if b.x<-6-1 or b.y<-6-1 or b.x>=320+1 or b.y>=200+1 then
+            form.dx=-form.dx; form.dy=-form.dy
+            break
+        end
+    end
+    form.x=form.x+form.dx*(t-form.bt); form.y=form.y+form.dy*(t-form.bt)
+    form.bt=t
+    for j2,form2 in ipairs(spec.bullet_formations) do
+        if form2~=form and t-form2.spawn_t>16 and sqrt((form2.x-form.x)^2+(form2.y-form.y)^2)<16 then
+            local a=atan2(form2.y-form.y,form2.x-form.x)
+            form2.dx=cos(a)*1.6; form2.dy=sin(a)*1.6
+            form.dx=cos(a+pi)*1.6; form.dy=sin(a+pi)*1.6
+            break
+        end
+    end
+    end
+end
+]]
+
+function stage16()
+    spec.sc_t=spec.sc_t or t
+    spec.pb=spec.pb or {} --persistent bullets
+    while t-spawn_t>=3 do
+        local oy=0
+        if love.update==menu_update then oy=-40 end
+        
+        for i=0,3-1 do
+        local a=(t-spec.sc_t)*0.4+i*0.2
+        local a2=(t-spec.sc_t)*0.02
+        ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=cos(a),dy=sin(a),bt=spawn_t+3})
+        end
+        
+        local a2=(t-spec.sc_t)*0.02
+        if spawn_t%6<3 and a2<=2*math.pi then
+        ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=0,dy=0,bt=spawn_t+3})
+        ins(spec.pb,bullets[#bullets])
+        end
+        
+        spawn_t=spawn_t+3
+    end
+end
+
 -- victory screen
 -- shows fireworks if you made a high score
 function stage25()
