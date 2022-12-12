@@ -251,10 +251,10 @@ function stage16()
         
         spawn_t=spawn_t+3
     end
-    while t-spec.spawn_t2>=4 do
+    while t-spec.spawn_t2>=0 do
         local a2=(t-spec.sc_t)*0.02
-        if a2<=2*math.pi then
-        ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=0,dy=0,bt=spec.spawn_t2+4})
+        if a2<=2*pi then
+        ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=0,dy=0,bt=spec.spawn_t2})
         ins(spec.pb,bullets[#bullets])
         end
         
