@@ -256,6 +256,8 @@ function stage16()
         if a2<=2*pi then
         ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=0,dy=0,bt=spec.spawn_t2})
         ins(spec.pb,bullets[#bullets])
+        spec.pb[#spec.pb].r=90
+        spec.pb[#spec.pb].a=a2
         end
         
         spec.spawn_t2=spec.spawn_t2+4
@@ -302,6 +304,25 @@ function stage17()
             break
         end
     end
+    end
+end
+
+function stage18()
+    spec.sc_t=spec.sc_t or t
+    local a=(t-spec.sc_t)*0.015
+    for i,b in ipairs(spec.pb) do
+        if b.r>30 then b.r=b.r-0.4*tmult end
+        b.x=320/2+sin(a*0.8)*70+cos(b.a)*b.r; b.y=200/2+sin(a)*40+sin(b.a)*b.r
+    end
+
+    while t-spawn_t>=7 do
+        for i=0,3-1 do
+        local a=(t-spec.sc_t)*0.4+i*0.3
+        local a2=(t-spec.sc_t)*0.02
+        ins(bullets,{x=320/2+cos(a2)*100+cos(i*0.4)*6,y=200/2+sin(a2)*100+sin(i*0.4)*6,dx=cos(a),dy=sin(a),bt=spawn_t+7})
+        end
+        
+        spawn_t=spawn_t+7
     end
 end
 

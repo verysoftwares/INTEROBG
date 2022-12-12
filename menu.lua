@@ -36,7 +36,16 @@ function circuit_lock()
         stage1() -- to initialize bullet x,y
     end
 
-    if DEBUG then bullets={}; stage=13 end
+    if DEBUG then 
+        bullets={}; stage=18
+        spec.pb={}
+        for i=0,360-1,3 do
+            local a=i*pi/180
+            ins(bullets,{r=90,a=a,bt=t,dx=0,dy=0})
+            ins(spec.pb,bullets[#bullets])
+        end 
+        stage18()
+    end
 end
 
 function circuit_preview()
