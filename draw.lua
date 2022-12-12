@@ -46,6 +46,7 @@ function overlay_draw()
     tutor_draw()
 
     if pgshow then
+        fg(0.8*255,0.8*255,0.8*255)
         lg.print(fmt('Time is running at %.2fx speed',tmult),8,16)
     end
 
