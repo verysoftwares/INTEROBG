@@ -40,7 +40,7 @@ function stage_update()
     local stageid=fmt('stage%d',stage)
     if _G[stageid] then _G[stageid]() end
 
-    if stage~=1 and stage~=13 --[[and stage~=16]] then bullet_update() end
+    if stage~=1 and stage~=13 and stage~=17 then bullet_update() end
 
     timer_update()
 end
@@ -75,7 +75,14 @@ function timer_update()
             timer=15*60
             stage=pend_stage
             bullets={}
+            
+            local old_pb=spec.pb
+            if spec.pb then for i,b in ipairs(spec.pb) do
+                ins(bullets,b)
+            end end
             spec={}
+            spec.pb=old_pb
+
             spawn_t=t+tmult
         end 
     end

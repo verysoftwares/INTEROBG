@@ -236,50 +236,6 @@ function stage15()
     end
 end
 
---[[
--- doesn't use shared bullet update
-function stage16()
-    spec.bullet_formations=spec.bullet_formations or {}
-    while t-spawn_t>=24 do
-        local a=spawn_t*0.8
-        ins(spec.bullet_formations,{})
-        for i=0,8-1 do
-        ins(bullets,{x=320/2+cos(i*(pi*2/8))*8,y=200/2-40+sin(i*(pi*2/8))*8,bt=spawn_t+24})
-        ins(spec.bullet_formations[#spec.bullet_formations],bullets[#bullets])
-        spec.bullet_formations[#spec.bullet_formations].x=320/2
-        spec.bullet_formations[#spec.bullet_formations].y=200/2-40
-        spec.bullet_formations[#spec.bullet_formations].dx=cos(a)*1.6
-        spec.bullet_formations[#spec.bullet_formations].dy=sin(a)*1.6
-        spec.bullet_formations[#spec.bullet_formations].bt=spawn_t+24
-        spec.bullet_formations[#spec.bullet_formations].spawn_t=spawn_t+24
-        end
-        spawn_t=spawn_t+24
-    end
-    for j,form in ipairs(spec.bullet_formations) do
-    for i,b in ipairs(form) do
-        b.x=b.x+form.dx*(t-b.bt); b.y=b.y+form.dy*(t-b.bt)
-        b.bt=t
-    end
-    for i,b in ipairs(form) do
-        if b.x<-6-1 or b.y<-6-1 or b.x>=320+1 or b.y>=200+1 then
-            form.dx=-form.dx; form.dy=-form.dy
-            break
-        end
-    end
-    form.x=form.x+form.dx*(t-form.bt); form.y=form.y+form.dy*(t-form.bt)
-    form.bt=t
-    for j2,form2 in ipairs(spec.bullet_formations) do
-        if form2~=form and t-form2.spawn_t>16 and sqrt((form2.x-form.x)^2+(form2.y-form.y)^2)<16 then
-            local a=atan2(form2.y-form.y,form2.x-form.x)
-            form2.dx=cos(a)*1.6; form2.dy=sin(a)*1.6
-            form.dx=cos(a+pi)*1.6; form.dy=sin(a+pi)*1.6
-            break
-        end
-    end
-    end
-end
-]]
-
 function stage16()
     spec.sc_t=spec.sc_t or t
     spec.pb=spec.pb or {} --persistent bullets
@@ -300,6 +256,49 @@ function stage16()
         end
         
         spawn_t=spawn_t+3
+    end
+end
+
+-- doesn't use shared bullet update
+function stage17()
+    spec.bullet_formations=spec.bullet_formations or {}
+    while t-spawn_t>=24 and #spec.bullet_formations<14 do
+        local a=spawn_t*0.8
+        ins(spec.bullet_formations,{})
+        for i=0,8-1 do
+        ins(bullets,{x=320/2+cos(i*(pi*2/8))*8,y=200/2+sin(i*(pi*2/8))*8,bt=spawn_t+24})
+        ins(spec.bullet_formations[#spec.bullet_formations],bullets[#bullets])
+        spec.bullet_formations[#spec.bullet_formations].x=320/2
+        spec.bullet_formations[#spec.bullet_formations].y=200/2-40
+        spec.bullet_formations[#spec.bullet_formations].dx=cos(a)*1.6
+        spec.bullet_formations[#spec.bullet_formations].dy=sin(a)*1.6
+        spec.bullet_formations[#spec.bullet_formations].bt=spawn_t+24
+        spec.bullet_formations[#spec.bullet_formations].spawn_t=spawn_t+24
+        end
+        spawn_t=spawn_t+24
+    end
+    for j,form in ipairs(spec.bullet_formations) do
+    for i,b in ipairs(form) do
+        --if b.x<-6-1 or b.y<-6-1 or b.x>=320+1 or b.y>=200+1 then
+        if sqrt((b.x+3-320/2)^2+(b.y+3-200/2)^2)>=90 then
+            form.dx=-form.dx; form.dy=-form.dy
+            break
+        end
+    end
+    for i,b in ipairs(form) do
+        b.x=b.x+form.dx*(t-b.bt); b.y=b.y+form.dy*(t-b.bt)
+        b.bt=t
+    end
+    form.x=form.x+form.dx*(t-form.bt); form.y=form.y+form.dy*(t-form.bt)
+    form.bt=t
+    for j2,form2 in ipairs(spec.bullet_formations) do
+        if form2~=form and t-form2.spawn_t>16 and sqrt((form2.x-form.x)^2+(form2.y-form.y)^2)<16 then
+            local a=atan2(form2.y-form.y,form2.x-form.x)
+            form2.dx=cos(a)*1.6; form2.dy=sin(a)*1.6
+            form.dx=cos(a+pi)*1.6; form.dy=sin(a+pi)*1.6
+            break
+        end
+    end
     end
 end
 
