@@ -318,7 +318,7 @@ function stage18()
     while t-spawn_t>=7 do
         for i=0,3-1 do
         local a=(t-spec.sc_t)*0.4+i*0.3
-        local a2=(t-spec.sc_t)*0.02
+        local a2=(t-spec.sc_t)*0.02+pi/2
         ins(bullets,{x=320/2+cos(a2)*100+cos(i*0.4)*6,y=200/2+sin(a2)*100+sin(i*0.4)*6,dx=cos(a),dy=sin(a),bt=spawn_t+7})
         end
         
