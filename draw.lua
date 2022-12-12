@@ -91,6 +91,9 @@ function header_draw()
     if stage==13 then msg='is this the demoscene?!' end
     if stage==14 then msg='is this the title screen?!' end
     if stage==15 then msg='i always knew it would be the squares that killed me?!' end
+    if stage==16 then msg='it takes a steady hand to draw a perfect circle?!' end
+    if stage==17 then msg='bouncy bois aplenty?!' end
+    if stage==18 then msg='i wonder if this attack is too difficult?!' end
     if stage==25 then 
         if score>hiscores[circuit] then msg='congrats for a high score?! enjoy the fireworks & press Esc when ready?!'
         else msg='congrats?! now go for a high score?! press Esc when ready?!' end
