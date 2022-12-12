@@ -111,10 +111,20 @@ function score_draw()
         lg.print(fmt('%.3d',l[1]),l.x,l.y)
     end
 
-    lg.print(fmt('%.9d',flr(shown_score)),320-font:getWidth(fmt('%.9d',flr(shown_score)))-4,200-8-4)
+    local msg=fmt('%.9d',flr(shown_score))
+    for i=1,#msg do
+    local ox=0
+    if sub(msg,i,i)=='1' then ox=1 end
+    lg.print(sub(msg,i,i),320-font:getWidth('000000000')-4+(i-1)*6+ox,200-8-4)
+    end
 
     fg(0.8*255,0.8*255,0.8*255)
-    lg.print(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)),320-font:getWidth(fmt('%.9d',flr(shown_score)))-font:getWidth(fmt('%.2d:%.2d',timer/60,timer%60*(100/60)))-4,200-8-4)
+    local msg=fmt('%.2d:%.2d',timer/60,timer%60*(100/60))
+    for i=1,#msg do
+    local ox=0
+    if sub(msg,i,i)=='1' or sub(msg,i,i)==':' then ox=1 end
+    lg.print(sub(msg,i,i),320-font:getWidth('000000000')-font:getWidth('00000')-4+(i-1)*6+ox,200-8-4)
+    end
 end
 
 function special_draw()
