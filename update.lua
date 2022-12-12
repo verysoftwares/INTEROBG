@@ -59,12 +59,16 @@ function timer_update()
             bullets={}
 
             -- persistent bullets (circuit 6)
+            if stage~=25 then
             local old_pb=spec.pb
             if spec.pb then for i,b in ipairs(spec.pb) do
                 ins(bullets,b)
             end end
             spec={}
             spec.pb=old_pb
+            else
+            spec={}
+            end
 
             spawn_t=t+tmult
         end 
