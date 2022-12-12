@@ -239,23 +239,26 @@ end
 function stage16()
     spec.sc_t=spec.sc_t or t
     spec.pb=spec.pb or {} --persistent bullets
+    spec.spawn_t2=spec.spawn_t2 or spawn_t
+    local oy=0
+    if love.update==menu_update then oy=-40 end
     while t-spawn_t>=3 do
-        local oy=0
-        if love.update==menu_update then oy=-40 end
-        
         for i=0,3-1 do
         local a=(t-spec.sc_t)*0.4+i*0.2
         local a2=(t-spec.sc_t)*0.02
         ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=cos(a),dy=sin(a),bt=spawn_t+3})
         end
         
+        spawn_t=spawn_t+3
+    end
+    while t-spec.spawn_t2>=4 do
         local a2=(t-spec.sc_t)*0.02
-        if spawn_t%6<3 and a2<=2*math.pi then
-        ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=0,dy=0,bt=spawn_t+3})
+        if a2<=2*math.pi then
+        ins(bullets,{x=320/2+cos(a2)*90,y=200/2+sin(a2)*90+oy,dx=0,dy=0,bt=spec.spawn_t2+4})
         ins(spec.pb,bullets[#bullets])
         end
         
-        spawn_t=spawn_t+3
+        spec.spawn_t2=spec.spawn_t2+4
     end
 end
 
