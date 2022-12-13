@@ -74,6 +74,8 @@ function menu_draw()
     
     menu_header_draw()
 
+    thumbnail_draw()
+    
     for i=0,3 do
         rect_draw(i)
 
@@ -82,8 +84,6 @@ function menu_draw()
         number_draw(i)
     end
 
-    thumbnail_draw()
-    
     while love.timer.getTime()-dt<1/60 do
     end
 end
@@ -94,6 +94,7 @@ function menu_update()
 
     if t==0 then
         load_hiscores()
+        load_progress()
     end
 
     circuit_preview()

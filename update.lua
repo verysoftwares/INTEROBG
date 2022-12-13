@@ -7,7 +7,7 @@ function player_update()
     if x+1>320-3 then x=320-3-1 end; if x+1<0 then x=-1 end
     if y+1+1>200-3 then y=200-3-2 end; if y+1+1<0 then y=-2 end
     
-    if press('pagedown') or (press('z') and not tapz) then tmult=tmult*0.991; if not pgshow then pgshow=true end; if not pgdtutor then pgdtutor=true end end
+    if press('pagedown') or (press('z') and not tapz) then tmult=tmult*0.991; if tmult<1 then red_check=false end; if not pgshow then pgshow=true end; if not pgdtutor then pgdtutor=true end end
     if not press('z') then tapz=false end
     if press('pageup') or press('x') then tmult=tmult*(1/0.991); if not pgshow then pgshow=true end; if not pgututor then pgututor=true end end
     
@@ -79,7 +79,7 @@ function timer_update()
             timer=15*60
             stage=pend_stage
             bullets={}
-            
+
             local old_pb=spec.pb
             if spec.pb then for i,b in ipairs(spec.pb) do
                 ins(bullets,b)
@@ -142,6 +142,7 @@ function wait()
     wt=wt-1
     if wt==0 then
         save_hiscores()
+        if stage==25 then save_progress() end
         love.update=menu_update
         love.draw=menu_draw
         bullets={}

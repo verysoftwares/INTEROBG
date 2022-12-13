@@ -30,6 +30,8 @@ function circuit_lock()
 
     spec={}
 
+    red_check=true
+
     if circuit==1 then
         bullets={{10*2,120},{20*2,160},{40*2,180}}
         rtutor=nil; ltutor=nil; dtutor=nil; ututor=nil; ftutor=nil; pgshow=nil; pgututor=nil; pgdtutor=nil
@@ -98,6 +100,24 @@ function rect_draw(i)
         else fg(0.8*255,0.4*255,0.4*255) end
     end
     rect('line',20+(60+12)*i+2,16+8-2+50+36,60,50)
+
+    -- green & red checkmarks
+    for j=0,1 do
+    if progress[i+1+j*4]>=1 then
+    for k=1,progress[i+1+j*4] do
+    local cmx,cmy=20+(60+12)*i+2+60-8-1,16+8-2+50-8-1
+    if progress[i+1+j*4]==2 and k==1 then cmx=cmx-7 end
+    fg(0.1*255,0.1*255,0.1*255)
+    rect('fill',cmx,cmy+j*(50+36),8,8)
+    fg(0.8*255,0.8*255,0.8*255)
+    rect('line',cmx,cmy+j*(50+36),8,8)
+    fg(0.4*255,0.8*255,0.4*255)
+    if k==2 then fg(0.8*255,0.4*255,0.4*255) end
+    lg.line(cmx+1,cmy+j*(50+36)+4,cmx+4,cmy+j*(50+36)+8-1)
+    lg.line(cmx+3,cmy+j*(50+36)+8-1,cmx+6,cmy+j*(50+36)+1)
+    end
+    end
+    end
 end
 
 function hiscore_draw(i)
