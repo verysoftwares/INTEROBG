@@ -47,7 +47,7 @@ function circuit_lock()
             ins(spec.pb,bullets[#bullets])
         end 
         stage18()]]
-        stage=22
+        stage=20
     end
 end
 
@@ -64,6 +64,8 @@ function circuit_preview()
         stage14()
     elseif circuit==6 then
         stage16()
+    elseif circuit==7 then
+        stage20()
     end
     
     local bx,by=(60+12)*(circuit-1),16+8-2
@@ -161,9 +163,9 @@ function number_draw(i)
     local nx=20+(60+12)*i+2+20-4+8+3
     local ny=16+8-2+50-30-10+12-1-4-2
     if i+1~=circuit then lg.print(i+1,nx,ny); lg.print(circuit_titles[i+1],nx+3-font:getWidth(circuit_titles[i+1])/2,ny+12) end
-    if (i+1+4==5 or i+1+4==6) and i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
+    if (i+1+4<8) and i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
 
-    if i+1+4>=7 then
+    if i+1+4==8 then
         lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50+36+50-30-10)
     end
 end
