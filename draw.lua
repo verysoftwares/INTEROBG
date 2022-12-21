@@ -97,6 +97,9 @@ function header_draw()
     if stage==19 then msg='the attacks in this circuit reference 3BUTTERF.EXE?!' end
     if stage==20 then msg='this one\'s a simplified S3W5?!' end
     if stage==21 then msg='sorry, but this attack is actually impossible?!' end
+    if stage==22 then msg='this trap is back with a vengeance?!' end
+    if stage==23 then msg='remember the tutorial boss?!' end
+    if stage==24 then msg='if you can beat this you\'re a lunatic?!' end
     if stage==25 then 
         if score>hiscores[circuit] then msg='congrats for a high score?! enjoy the fireworks & press Esc when ready?!'
         else msg='congrats?! now go for a high score?! press Esc when ready?!' end
