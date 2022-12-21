@@ -331,13 +331,10 @@ end
 function stage19()
     spec.b2w6_a=spec.b2w6_a or {}
                 
-    if (t-spawn_t-51)%120==0 then
+    if (t-spawn_t-141)%120==0 then
         ins(spec.b2w6_a,{t=-20,x=x,y=y,a=(t-spawn_t)*0.2,d=0})
         spec.warn_a=(t-spawn_t)*0.2
         spec.warn_t=t-spawn_t
-    end
-    if (t-spawn_t-51)%120<=8 then
-        lg.line(x-cos(spec.warn_a)*120,y-sin(spec.warn_a)*120,x-cos(spec.warn_a)*120+cos(spec.warn_a)*(t-spec.warn_t)*24,y-sin(spec.warn_a)*120+sin(spec.warn_a)*(t-spec.warn_t)*24,12)
     end
     if t%2==0 then
     for j,swipe in ipairs(spec.b2w6_a) do

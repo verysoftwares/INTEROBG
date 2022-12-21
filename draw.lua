@@ -131,6 +131,11 @@ function score_draw()
 end
 
 function special_draw()
+    if stage==19 then
+        if spec.warn_t and t-spec.warn_t<20 then
+            lg.line(x-cos(spec.warn_a)*120,y-sin(spec.warn_a)*120,x-cos(spec.warn_a)*120+cos(spec.warn_a)*(t-spec.warn_t)*24,y-sin(spec.warn_a)*120+sin(spec.warn_a)*(t-spec.warn_t)*24,12)
+        end
+    end
     if stage==26 then
         call_draw('BOSS')
     end
