@@ -431,7 +431,7 @@ end
 
 function stage24()
     while t-spawn_t>=1 do
-        ins(bullets,{x=320/2+cos(spawn_t*0.4)*40,y=200/2-40,dx=cos(spawn_t*131.1)*0.1*8.8,dy=sin(spawn_t*131.1)*0.1*8.8,bt=spawn_t+1})
+        ins(bullets,{x=320/2+cos(spawn_t*0.4)*40,y=200/2-40,dx=cos(spawn_t*131.1)*0.2*8.8,dy=sin(spawn_t*131.1)*0.2*8.8,bt=spawn_t+1})
         if spawn_t%48<12 then
         local a=atan2(y-bullets[#bullets].y,x-bullets[#bullets].x)
         bullets[#bullets].dx=cos(a)*0.3*8.8
