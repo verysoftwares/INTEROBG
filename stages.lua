@@ -328,6 +328,59 @@ function stage18()
     end
 end
 
+function stage19()
+    spec.b2w6_a=spec.b2w6_a or {}
+                
+    if (t-spawn_t-51)%120==0 then
+        ins(spec.b2w6_a,{t=-20,x=x,y=y,a=(t-spawn_t)*0.2,d=0})
+        spec.warn_a=(t-spawn_t)*0.2
+        spec.warn_t=t-spawn_t
+    end
+    if (t-spawn_t-51)%120<=8 then
+        lg.line(x-cos(spec.warn_a)*120,y-sin(spec.warn_a)*120,x-cos(spec.warn_a)*120+cos(spec.warn_a)*(t-spec.warn_t)*24,y-sin(spec.warn_a)*120+sin(spec.warn_a)*(t-spec.warn_t)*24,12)
+    end
+    if t%2==0 then
+    for j,swipe in ipairs(spec.b2w6_a) do
+    for i=0,0 do
+        ins(bullets,{x=swipe.x-cos(swipe.a)*(120-swipe.d)+cos(swipe.a+pi/2)*(i)*28,y=swipe.y-sin(swipe.a)*(120-swipe.d)+sin(swipe.a+pi/2)*(i)*28,dx=0,dy=0,bt=spawn_t})
+        ins(swipe,bullets[#bullets])
+    end
+    swipe.d=swipe.d+6
+    end
+    end
+    
+    for j,swipe in ipairs(spec.b2w6_a) do
+    for k,b in ipairs(swipe) do
+        if k+60>swipe.t then break end
+        if b.dx==0 and b.dy==0 then
+            b.dx=cos(b.x*0.08)*0.4; b.dy=sin(b.x*0.08)*0.4
+        end
+    end
+    swipe.t=swipe.t+1
+    end
+end
+
+function stage20()
+    while t-spawn_t>=1 do
+        local a=(t)*143.402
+        ins(bullets,{x=320/2-60,y=200/2-40,dx=cos(a)*1.25,dy=sin(a)*1.25,bt=spawn_t+1})
+        ins(bullets,{x=320/2+60,y=200/2-40,dx=cos(-a)*1.25,dy=sin(-a)*1.25,bt=spawn_t+1})
+        spawn_t=spawn_t+1
+    end
+end
+
+function stage21()
+end
+
+function stage22()
+    acc=acc or t*0.9
+    while t-spawn_t>=1 do
+        ins(bullets,{x=320/2,y=200/2-40,dx=cos(acc*0.4)*0.2*8.8,dy=sin(acc*0.4)*0.2*8.8,bt=spawn_t+1})
+        spawn_t=spawn_t+1
+    end
+    acc=acc+t*0.01
+end
+
 -- victory screen
 -- shows fireworks if you made a high score
 function stage25()
