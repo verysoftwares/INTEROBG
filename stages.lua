@@ -392,14 +392,54 @@ function stage21()
     end
 end
 
---[[function stage22()
+function stage22()
+    if not spec.pb2 then
+        spec.sc_t=spec.sc_t or t
+        spec.pb2={}
+        for i=0,360-1,3 do
+            local a=i*pi/180
+            ins(bullets,{r=90,a=a,bt=t,dx=0,dy=0})
+            ins(spec.pb2,bullets[#bullets])
+        end 
+    end
+
+    local a=(t-spec.sc_t)*0.015
+    for i,b in ipairs(spec.pb2) do
+        if b.r>40 then b.r=b.r-0.4*tmult end
+        b.x=320/2+sin(a*0.8)*70+cos(b.a)*b.r; b.y=200/2+sin(a)*40+sin(b.a)*b.r
+    end
+
+    while t-spawn_t>=5 do
+        for i=0,3-1 do
+        local a=(t-spec.sc_t)*0.4+i*0.3
+        local a2=(t-spec.sc_t)*0.02+pi/2
+        ins(bullets,{x=320/2+cos(a2)*100+cos(i*0.4)*6,y=200/2+sin(a2)*100+sin(i*0.4)*6,dx=cos(a),dy=sin(a),bt=spawn_t+5})
+        end
+        
+        spawn_t=spawn_t+5
+    end
+end
+
+function stage23()
     acc=acc or t*0.9
     while t-spawn_t>=1 do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(acc*0.4)*0.2*8.8,dy=sin(acc*0.4)*0.2*8.8,bt=spawn_t+1})
         spawn_t=spawn_t+1
     end
     acc=acc+t*0.01
-end]]
+end
+
+function stage24()
+    while t-spawn_t>=1 do
+        ins(bullets,{x=320/2+cos(spawn_t*0.4)*40,y=200/2-40,dx=cos(spawn_t*131.1)*0.1*8.8,dy=sin(spawn_t*131.1)*0.1*8.8,bt=spawn_t+1})
+        if spawn_t%48<12 then
+        local a=atan2(y-bullets[#bullets].y,x-bullets[#bullets].x)
+        bullets[#bullets].dx=cos(a)*0.3*8.8
+        bullets[#bullets].dy=sin(a)*0.3*8.8
+        end
+        spawn_t=spawn_t+1
+    end
+end
 
 -- victory screen
 -- shows fireworks if you made a high score

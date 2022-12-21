@@ -39,7 +39,8 @@ function circuit_lock()
     end
 
     if DEBUG then 
-        --[[bullets={}; stage=18
+        bullets={}
+        --[[stage=18
         spec.pb={}
         for i=0,360-1,3 do
             local a=i*pi/180
@@ -47,7 +48,7 @@ function circuit_lock()
             ins(spec.pb,bullets[#bullets])
         end 
         stage18()]]
-        stage=21
+        stage=24
     end
 end
 
@@ -66,6 +67,8 @@ function circuit_preview()
         stage16()
     elseif circuit==7 then
         stage20()
+    elseif circuit==8 then
+        stage24()
     end
     
     local bx,by=(60+12)*(circuit-1),16+8-2
@@ -149,7 +152,7 @@ end
 local circuit_titles={
     'Tutorial',
     'Curves',
-    'Double',
+    'Doubles',
     'Homing',
     'Shapes',
     'Trap',
@@ -163,11 +166,11 @@ function number_draw(i)
     local nx=20+(60+12)*i+2+20-4+8+3
     local ny=16+8-2+50-30-10+12-1-4-2
     if i+1~=circuit then lg.print(i+1,nx,ny); lg.print(circuit_titles[i+1],nx+3-font:getWidth(circuit_titles[i+1])/2,ny+12) end
-    if (i+1+4<8) and i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
+    if i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
 
-    if i+1+4==8 then
+    --[[if i+1+4==8 then
         lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50+36+50-30-10)
-    end
+    end]]
 end
 
 function thumbnail_draw()
