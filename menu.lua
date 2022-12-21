@@ -39,14 +39,15 @@ function circuit_lock()
     end
 
     if DEBUG then 
-        bullets={}; stage=18
+        --[[bullets={}; stage=18
         spec.pb={}
         for i=0,360-1,3 do
             local a=i*pi/180
             ins(bullets,{r=90,a=a,bt=t,dx=0,dy=0})
             ins(spec.pb,bullets[#bullets])
         end 
-        stage18()
+        stage18()]]
+        stage=22
     end
 end
 
@@ -81,7 +82,7 @@ function menu_header_draw()
     fg(0.4*255,0.8*255,0.4*255)
     rect('fill',0,0,320,10)
     fg(0.1*255,0.1*255,0.1*255)
-    lg.print('select circuit?! arrows and Z?!',320/2-font:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,1)
+    lg.print('select circuit?! arrows and Z?!',320/2-font:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,0)
 end
 
 function rect_draw(i)
@@ -101,7 +102,7 @@ function rect_draw(i)
     end
     rect('line',20+(60+12)*i+2,16+8-2+50+36,60,50)
 
-    -- green & red checkmarks
+    -- white & green checkmarks
     for j=0,1 do
     if progress[i+1+j*4]>=1 then
     for k=1,progress[i+1+j*4] do
@@ -143,13 +144,24 @@ function hiscore_draw(i)
     lg.print(fmt('%.9d',lastscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8+8)
 end
 
+local circuit_titles={
+    'Tutorial',
+    'Curves',
+    'Double',
+    'Homing',
+    'Shapes',
+    'Trap',
+    'Butterfly',
+    'Brutal'
+}
+
 function number_draw(i)
     fg(0.8*255,0.8*255,0.8*255)
 
     local nx=20+(60+12)*i+2+20-4+8+3
-    local ny=16+8-2+50-30-10+12-1
-    if i+1~=circuit then lg.print(i+1,nx,ny) end
-    if (i+1+4==5 or i+1+4==6) and i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny) end
+    local ny=16+8-2+50-30-10+12-1-4-2
+    if i+1~=circuit then lg.print(i+1,nx,ny); lg.print(circuit_titles[i+1],nx+3-font:getWidth(circuit_titles[i+1])/2,ny+12) end
+    if (i+1+4==5 or i+1+4==6) and i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
 
     if i+1+4>=7 then
         lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50+36+50-30-10)
