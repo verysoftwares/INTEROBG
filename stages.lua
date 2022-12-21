@@ -330,19 +330,26 @@ end
 
 function stage19()
     spec.b2w6_a=spec.b2w6_a or {}
-                
-    if (t-spawn_t-141)%120==0 then
-        ins(spec.b2w6_a,{t=-20,x=x,y=y,a=(t-spawn_t)*0.2,d=0})
-        spec.warn_a=(t-spawn_t)*0.2
-        spec.warn_t=t-spawn_t
+    spec.spawn_t2=spec.spawn_t2 or t    
+
+    while t-spec.spawn_t2>=0 do
+        ins(spec.b2w6_a,{t=-20,x=x,y=y,a=(t)*0.2,d=0})
+        spec.warn_a=(t)*0.2
+        spec.warn_t=t
+        spec.spawn_t2=spec.spawn_t2+120
+        spec.b2w6_b=false
     end
-    if t%2==0 then
+    if t-spec.warn_t>=30 and not spec.b2w6_b then spawn_t=t; spec.b2w6_b=true end
+    if t-spec.warn_t>30 then
+    while t-spawn_t>=2 do
     for j,swipe in ipairs(spec.b2w6_a) do
     for i=0,0 do
-        ins(bullets,{x=swipe.x-cos(swipe.a)*(120-swipe.d)+cos(swipe.a+pi/2)*(i)*28,y=swipe.y-sin(swipe.a)*(120-swipe.d)+sin(swipe.a+pi/2)*(i)*28,dx=0,dy=0,bt=spawn_t})
+        ins(bullets,{x=swipe.x-cos(swipe.a)*(120-swipe.d)+cos(swipe.a+pi/2)*(i)*28,y=swipe.y-sin(swipe.a)*(120-swipe.d)+sin(swipe.a+pi/2)*(i)*28,dx=0,dy=0,bt=spawn_t+2})
         ins(swipe,bullets[#bullets])
     end
     swipe.d=swipe.d+6
+    end
+    spawn_t=spawn_t+2
     end
     end
     
@@ -353,7 +360,7 @@ function stage19()
             b.dx=cos(b.x*0.08)*0.4; b.dy=sin(b.x*0.08)*0.4
         end
     end
-    swipe.t=swipe.t+1
+    swipe.t=swipe.t+tmult
     end
 end
 
