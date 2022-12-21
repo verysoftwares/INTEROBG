@@ -366,7 +366,7 @@ end
 
 function stage20()
     while t-spawn_t>=1 do
-        local a=(t)*143.402
+        local a=(spawn_t)*143.402
         ins(bullets,{x=320/2-60,y=200/2-40,dx=cos(a)*1.25,dy=sin(a)*1.25,bt=spawn_t+1})
         ins(bullets,{x=320/2+60,y=200/2-40,dx=cos(-a)*1.25,dy=sin(-a)*1.25,bt=spawn_t+1})
         spawn_t=spawn_t+1
@@ -392,14 +392,14 @@ function stage21()
     end
 end
 
-function stage22()
+--[[function stage22()
     acc=acc or t*0.9
     while t-spawn_t>=1 do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(acc*0.4)*0.2*8.8,dy=sin(acc*0.4)*0.2*8.8,bt=spawn_t+1})
         spawn_t=spawn_t+1
     end
     acc=acc+t*0.01
-end
+end]]
 
 -- victory screen
 -- shows fireworks if you made a high score
