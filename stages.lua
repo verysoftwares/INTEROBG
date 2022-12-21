@@ -374,6 +374,22 @@ function stage20()
 end
 
 function stage21()
+    if not spec.b4w3_a then spec.b4w3_a={} end
+    while t-spawn_t>=0 do
+        local a=0
+        while a<2*pi do
+            ins(bullets,{x=320/2,y=35/2,dx=cos(a),dy=sin(a),bt=spawn_t})
+            ins(spec.b4w3_a,bullets[#bullets])
+            a=a+0.055
+        end
+        spawn_t=spawn_t+90
+    end
+    for i,b in ipairs(spec.b4w3_a) do
+        if math.sqrt((b.x-(x+2))^2+(b.y-(y+2))^2)<=12 then
+            b.dx=b.dx*0.85
+            b.dy=b.dy*0.85
+        end
+    end
 end
 
 function stage22()

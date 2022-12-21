@@ -47,7 +47,7 @@ function circuit_lock()
             ins(spec.pb,bullets[#bullets])
         end 
         stage18()]]
-        stage=20
+        stage=21
     end
 end
 
