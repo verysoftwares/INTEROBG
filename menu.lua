@@ -88,6 +88,10 @@ function menu_header_draw()
     rect('fill',0,0,320,10)
     fg(0.1*255,0.1*255,0.1*255)
     lg.print('select circuit?! arrows and Z?!',320/2-font:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,0)
+
+    fg(0.8*255,0.8*255,0.8*255)
+    local swmsg='Shareware version - please distribute'
+    lg.print(swmsg,320/2-font:getWidth(swmsg)/2,200-8-3)
 end
 
 function rect_draw(i)
@@ -97,7 +101,7 @@ function rect_draw(i)
         if t%8<4 then fg(0.8*255,0.8*255,0.8*255)
         else fg(0.8*255,0.4*255,0.4*255) end
     end
-    rect('line',20+(60+12)*i+2,16+8-2,60,50)
+    rect('line',20+(60+12)*i+2,16+8-2-6,60,50)
     
     -- lower row
     fg(0.4*255,0.8*255,0.4*255)
@@ -105,13 +109,13 @@ function rect_draw(i)
         if t%8<4 then fg(0.8*255,0.8*255,0.8*255)
         else fg(0.8*255,0.4*255,0.4*255) end
     end
-    rect('line',20+(60+12)*i+2,16+8-2+50+36,60,50)
+    rect('line',20+(60+12)*i+2,16+8-2+50+36-6,60,50)
 
     -- white & green checkmarks
     for j=0,1 do
     if progress[i+1+j*4]>=1 then
     for k=1,progress[i+1+j*4] do
-    local cmx,cmy=20+(60+12)*i+2+60-8-1,16+8-2+50-8-1
+    local cmx,cmy=20+(60+12)*i+2+60-8-1,16+8-2+50-8-1-6
     if progress[i+1+j*4]==2 and k==1 then cmx=cmx-8 end
     fg(0.1*255,0.1*255,0.1*255)
     rect('fill',cmx,cmy+j*(50+36),8,8)
@@ -130,23 +134,23 @@ end
 function hiscore_draw(i)
     -- upper row
     fg(0.8*255,0.4*255,0.4*255)
-    lg.print(fmt('high:',0),20+(60+12)*i+2,16+8-2+50+1)
+    lg.print(fmt('high:',0),20+(60+12)*i+2,16+8-2+50+1-6)
     fg(0.7*255,0.3*255,0.3*255)
-    lg.print(fmt('%.9d',hiscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8)
+    lg.print(fmt('%.9d',hiscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8-6)
     fg(0.6*255,0.2*255,0.2*255)
-    lg.print(fmt('last:'),20+(60+12)*i+2,16+8-2+50+1+8+8)
+    lg.print(fmt('last:'),20+(60+12)*i+2,16+8-2+50+1+8+8-6)
     fg(0.5*255,0.1*255,0.1*255)
-    lg.print(fmt('%.9d',lastscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8+8+8)
+    lg.print(fmt('%.9d',lastscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8+8+8-6)
 
     -- lower row
     fg(0.8*255,0.4*255,0.4*255)
-    lg.print(fmt('high:',0),20+(60+12)*i+2,16+8-2+50+36+50+1)
+    lg.print(fmt('high:',0),20+(60+12)*i+2,16+8-2+50+36+50+1-6)
     fg(0.7*255,0.3*255,0.3*255)
-    lg.print(fmt('%.9d',hiscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8)
+    lg.print(fmt('%.9d',hiscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8-6)
     fg(0.6*255,0.2*255,0.2*255)
-    lg.print(fmt('last:'),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8)
+    lg.print(fmt('last:'),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8-6)
     fg(0.5*255,0.1*255,0.1*255)
-    lg.print(fmt('%.9d',lastscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8+8)
+    lg.print(fmt('%.9d',lastscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8+8-6)
 end
 
 local circuit_titles={
@@ -164,7 +168,7 @@ function number_draw(i)
     fg(0.8*255,0.8*255,0.8*255)
 
     local nx=20+(60+12)*i+2+20-4+8+3
-    local ny=16+8-2+50-30-10+12-1-4-2
+    local ny=16+8-2+50-30-10+12-1-4-2-6
     if i+1~=circuit then lg.print(i+1,nx,ny); lg.print(circuit_titles[i+1],nx+3-font:getWidth(circuit_titles[i+1])/2,ny+12) end
     if i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
 
@@ -175,7 +179,7 @@ end
 
 function thumbnail_draw()
     fg(0.4*255,0.8*255,0.4*255)
-    local bx,by=(60+12)*(circuit-1),0
+    local bx,by=(60+12)*(circuit-1),-6
     if circuit>4 then bx=(60+12)*((circuit-4)-1) end
     if circuit>4 then by=by+50+36 end
     for i,r in ipairs(bullets) do
