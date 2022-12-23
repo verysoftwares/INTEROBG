@@ -68,6 +68,8 @@ function title_lock()
 end
 
 function checkerboard_draw()
+    bg(0.4*255,0.4*255,0.4*255)
+
     fg(0.2*255,0.2*255,0.2*255)
     for x=-1,10-1 do for y=-1,7-1 do
         if (x+y)%2==1 then rect('fill',x*32+t*0.5%32,y*32+t*0.5%32,32,32) end

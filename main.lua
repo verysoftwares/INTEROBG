@@ -148,8 +148,6 @@ end
 
 -- implementations in title.lua
 function register_draw()
-    bg(0.4*255,0.4*255,0.4*255)
-
     checkerboard_draw()
 
     shareware_msg_draw()
