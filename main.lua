@@ -34,6 +34,8 @@ function love.keypressed(key)
             love.event.quit()
         elseif love.update==menu_update or love.update==register_update then
             love.update=title_update; love.draw=title_draw; bullets={}; spec={}; spawn_t=t+1
+        elseif love.update==victory_update then
+            love.update=menu_update; love.draw=menu_draw; bullets={}; spec={}; spawn_t=t+1
         elseif love.update~=wait then 
             love.update=wait; wt=120; shown_score=score; labels={} 
         end 
