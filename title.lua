@@ -87,7 +87,7 @@ function shareware_msg_draw()
     end
 end
 
-local register_lines={
+register_lines={
     'this is the shareware episode,',
     'containing 8 circuits of 3 attacks.',
     '',
@@ -102,8 +102,8 @@ local register_lines={
     '--Leonard Somero (verysoftwares)'
 }
 
-function register_msg_draw()
-    for i,m in ipairs(register_lines) do
+function register_msg_draw(lines)
+    for i,m in ipairs(lines) do
         -- drop shadow
         fg(0.2*255,0.2*255,0.2*255)
         lg.print(m,320/2-font:getWidth(m)/2+1,48+(i-1)*10+6+1)
