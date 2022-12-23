@@ -106,6 +106,7 @@ function menu_update()
     t=t+1
 end
 
+-- implementations in title.lua
 function title_draw()
     bg_draw()
 
@@ -125,6 +126,7 @@ function title_draw()
     end
 end
 
+-- implementations in title.lua
 function title_update()
     dt=love.timer.getTime()
 
@@ -152,7 +154,7 @@ function register_draw()
 
     shareware_msg_draw()
 
-    register_msg_draw()
+    register_msg_draw(register_lines)
 
     while love.timer.getTime()-dt<1/60 do
     end
