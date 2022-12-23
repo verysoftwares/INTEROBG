@@ -1,5 +1,13 @@
 font=lg.getFont()
 
+function bg_draw()
+    bg(0.1*255,0.1*255,0.1*255)
+    fg(0.2*255,0.2*255,0.2*255)
+    rect('fill',0,70,320,60)
+    fg(0.3*255,0.3*255,0.3*255)
+    rect('fill',0,70+20,320,20)
+end
+
 function bullet_draw(bl)
     local r,g,b=0.4,0.8,0.4
     

@@ -35,7 +35,7 @@ end
 
 -- implementations in draw.lua
 function main_draw()
-    bg(0.1*255,0.1*255,0.1*255)
+    bg_draw()
 
     for i,b in ipairs(bullets) do
         bullet_draw(b)
