@@ -119,6 +119,8 @@ function title_draw()
 
     lg.draw(title,title_x,200-120)
 
+    version_msg_draw()
+
     while love.timer.getTime()-dt<1/60 do
     end
 end

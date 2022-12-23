@@ -30,6 +30,19 @@ function title_msg_draw(title_t)
     end
 end
 
+function version_msg_draw()
+    local msg='version 3a'
+    local tx=title_x+120/2-font:getWidth(msg)/2
+    fg(0.2*255,0.4*255,0.8*255)
+    lg.print(msg,tx-1,200-20)
+    lg.print(msg,tx+1,200-20)
+    lg.print(msg,tx,200-20-1)
+    lg.print(msg,tx,200-20+1)
+
+    fg(0.8*255,0.8*255,0.8*255)
+    lg.print(msg,tx,200-20)
+end
+
 function title_select()
     if tapped('right') then title_sel.i=title_sel.i+1 end
     if tapped('left')  then title_sel.i=title_sel.i-1 end
