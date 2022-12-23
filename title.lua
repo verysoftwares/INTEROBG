@@ -94,7 +94,7 @@ function register_msg_draw()
             local tx=0
             for j=1,#m do
                 local char=sub(m,j,j)
-                fg(128+flr(sin(j*0.2)*128),128+flr(sin(j*0.2+2*pi/3)*128),128+flr(sin(j*0.2+2*pi/3*2)*128))
+                fg(160+flr(sin(j*0.2)*(255-160)),160+flr(sin(j*0.2+2*pi/3)*(255-160)),160+flr(sin(j*0.2+2*pi/3*2)*(255-160)))
                 lg.print(char,320/2-font:getWidth(m)/2+tx,48+(i-1)*10+6)
                 tx=tx+font:getWidth(char)
             end
