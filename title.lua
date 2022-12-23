@@ -76,8 +76,7 @@ function checkerboard_draw()
     end end
 end
 
-function shareware_msg_draw()
-    local msg='support shareware!'
+function shareware_msg_draw(msg)
     local tx=0
     for i=1,#msg do
         local char=sub(msg,i,i)

@@ -150,7 +150,7 @@ end
 function register_draw()
     checkerboard_draw()
 
-    shareware_msg_draw()
+    shareware_msg_draw('support shareware?!')
 
     register_msg_draw(register_lines)
 
