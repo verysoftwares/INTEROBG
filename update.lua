@@ -142,9 +142,12 @@ function wait()
     wt=wt-1
     if wt==0 then
         save_hiscores()
-        if stage==25 then save_progress() end
         love.update=menu_update
         love.draw=menu_draw
+        
+        -- can change love.update and love.draw
+        if stage==25 then save_progress() end
+        
         bullets={}
         spawn_t=t
         spec={}
