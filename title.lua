@@ -16,11 +16,14 @@ function title_msg_draw(title_t)
             local tx=120
             if i==1 then tx=120-25 end
             if i==2 then tx=120-10 end
+
+            -- blue edges of text
             fg(0.2*255,0.4*255,0.8*255)
             lg.print(msg,tx-1,200-120+(i-1)*16)
             lg.print(msg,tx+1,200-120+(i-1)*16)
             lg.print(msg,tx,200-120+(i-1)*16-1)
             lg.print(msg,tx,200-120+(i-1)*16+1)
+
             fg(0.8*255,0.8*255,0.8*255)
             lg.print(msg,tx,200-120+(i-1)*16)
         end
@@ -88,9 +91,12 @@ local register_lines={
 
 function register_msg_draw()
     for i,m in ipairs(register_lines) do
+        -- drop shadow
         fg(0.2*255,0.2*255,0.2*255)
         lg.print(m,320/2-font:getWidth(m)/2+1,48+(i-1)*10+6+1)
+
         if sub(m,1,1)=='>' then
+            -- rainbow text
             local tx=0
             for j=1,#m do
                 local char=sub(m,j,j)
