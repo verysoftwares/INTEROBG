@@ -186,9 +186,9 @@ xxxx
 ]]
 
 function stage14()
-    local speedup=33
-    if love.update==menu_update then speedup=0 end
-    while t-spawn_t>=speedup do
+    local pause=33
+    if love.update==menu_update or love.update==title_update then pause=0 end
+    while t-spawn_t>=pause do
         local i=1
         local tx,ty=0,0
         local a=spawn_t*0.4+pi/2
@@ -204,7 +204,7 @@ function stage14()
             if char=='x' then
                 for i=0,3-1 do
                 local a2=a+i*2*pi/3
-                ins(bullets,{x=320/2-cos(a2)*20+cos(a2)*ty*5+cos(a2-pi/2)*tx*5,y=200/2-40-sin(a2)*20+sin(a2)*ty*5+sin(a2-pi/2)*tx*5,dx=cos(a2)*2.5,dy=sin(a2)*2.5,bt=spawn_t+speedup})
+                ins(bullets,{x=320/2-cos(a2)*20+cos(a2)*ty*5+cos(a2-pi/2)*tx*5,y=200/2-40-sin(a2)*20+sin(a2)*ty*5+sin(a2-pi/2)*tx*5,dx=cos(a2)*2.5,dy=sin(a2)*2.5,bt=spawn_t+pause})
                 end
             end
             tx=tx+1
