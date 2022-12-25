@@ -87,7 +87,7 @@ function menu_header_draw()
     fg(0.4*255,0.8*255,0.4*255)
     rect('fill',0,0,320,10)
     fg(0.1*255,0.1*255,0.1*255)
-    lg.print('select circuit?! arrows and Z?!',320/2-font:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,0)
+    lg.print('select circuit?!',320/2-font:getWidth('select circuit?! arrows and Z?!')/2+sin(t*0.004*8.8)*24,0)
 
     fg(0.8*255,0.8*255,0.8*255)
     local swmsg='Shareware version - please distribute'
