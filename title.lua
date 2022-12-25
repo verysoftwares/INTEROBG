@@ -50,7 +50,7 @@ function title_select()
     if tapped('down')  then title_sel.i=title_sel.i+1 end
     if title_sel.i<1 then title_sel.i=#title_sel end
     if title_sel.i>#title_sel then title_sel.i=1 end
-    if tapped('z') then title_lock() end
+    if tapped('z') or tapped('return') then title_lock() end
 end
 
 title_x=-160

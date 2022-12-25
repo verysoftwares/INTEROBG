@@ -5,13 +5,13 @@ function circuit_select()
     if tapped('down')  then circuit=circuit+4; spawn_t=t+1; bullets={}; spec={} end
     if circuit<1 then circuit=circuit+8 end
     if circuit>8 then circuit=circuit-8 end
-    if tapped('z') then circuit_lock() end
+    if tapped('z') then tapz=true; circuit_lock() end
+    if tapped('return') then circuit_lock() end
 end
 
 function circuit_lock()
     love.update=main_update
     love.draw=main_draw
-    tapz=true
 
     stage=1+(circuit-1)*3
 
