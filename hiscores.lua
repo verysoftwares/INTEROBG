@@ -6,15 +6,15 @@ function save_hiscores()
         for i,h in ipairs(hiscores) do out=out..tostring(h)..',' end
         out=sub(out,1,#out-1) -- get rid of last comma
         out=out..'}'
-        love.filesystem.write('HI.SCO',out)
+        love.filesystem.write('HISCO.RES',out)
     end
 end
 
 function load_hiscores()
-    if not love.filesystem.exists('HI.SCO') then
-        love.filesystem.write('HI.SCO','hiscores={0,0,0,0,0,0,0,0}')
+    if not love.filesystem.exists('HISCO.RES') then
+        love.filesystem.write('HISCO.RES','hiscores={0,0,0,0,0,0,0,0}')
     end
-    loadstring(love.filesystem.read('HI.SCO'))()
+    loadstring(love.filesystem.read('HISCO.RES'))()
     lastscores={0,0,0,0,0,0,0,0}
 end
 
