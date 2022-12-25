@@ -31,7 +31,7 @@ function title_msg_draw(title_t)
 end
 
 function version_msg_draw()
-    local msg='version 3a'
+    local msg='version 3b'
     local tx=title_x+120/2-font:getWidth(msg)/2
     fg(0.2*255,0.4*255,0.8*255)
     lg.print(msg,tx-1,200-20)
