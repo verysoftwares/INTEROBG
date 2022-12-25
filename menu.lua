@@ -169,8 +169,8 @@ function number_draw(i)
 
     local nx=20+(60+12)*i+2+20-4+8+3
     local ny=16+8-2+50-30-10+12-1-4-2-6
-    if i+1~=circuit then lg.print(i+1,nx,ny); lg.print(circuit_titles[i+1],nx+3-font:getWidth(circuit_titles[i+1])/2,ny+12) end
-    if i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx,ny); lg.print(circuit_titles[i+4+1],nx+3-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
+    if i+1~=circuit then lg.print(i+1,nx+4-font:getWidth(i+1)/2,ny); lg.print(circuit_titles[i+1],nx+4-font:getWidth(circuit_titles[i+1])/2,ny+12) end
+    if i+1+4~=circuit then ny=ny+50+36; lg.print(i+4+1,nx+4-font:getWidth(i+4+1)/2,ny); lg.print(circuit_titles[i+4+1],nx+4-font:getWidth(circuit_titles[i+4+1])/2,ny+12) end
 
     --[[if i+1+4==8 then
         lg.print('not\nin\ndemo',20+(60+12)*i+2+20-4,16+8-2+50+36+50-30-10)
