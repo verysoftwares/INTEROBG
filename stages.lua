@@ -421,12 +421,12 @@ function stage22()
 end
 
 function stage23()
-    acc=acc or t*28.9
+    spec.acc=spec.acc or t*28.9
     while t-spawn_t>=1 do
-        ins(bullets,{x=320/2,y=200/2-40,dx=cos(acc*0.12)*0.2*8.8,dy=sin(acc*0.12)*0.2*8.8,bt=spawn_t+1})
+        ins(bullets,{x=320/2,y=200/2-40,dx=cos(spec.acc*0.12)*0.2*8.8,dy=sin(spec.acc*0.12)*0.2*8.8,bt=spawn_t+1})
         spawn_t=spawn_t+1
     end
-    acc=acc+t*0.03
+    spec.acc=spec.acc+t*0.03
 end
 
 function stage24()
