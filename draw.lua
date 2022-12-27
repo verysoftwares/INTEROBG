@@ -8,6 +8,21 @@ function bg_draw()
     rect('fill',0,70+20,320,20)
 end
 
+function spawner_draw()
+    local s=1
+    while spec['spawner'..tostring(s)] do
+        local sp=spec['spawner'..tostring(s)]
+        local img
+        if t%12<4 then img=sparkle1
+        elseif t%12<8 then img=sparkle2
+        else img=sparkle3 end
+
+        lg.draw(img,sp.x-4,sp.y-4)
+
+        s=s+1
+    end
+end
+
 function bullet_draw(bl)
     local r,g,b=0.4,0.8,0.4
     

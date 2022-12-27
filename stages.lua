@@ -11,6 +11,8 @@ function stage1()
 end
 
 function stage2()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=3 do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(spawn_t*0.4)*0.2*8.8,dy=sin(spawn_t*0.4)*0.2*8.8,bt=spawn_t+3})
         spawn_t=spawn_t+3
@@ -18,6 +20,8 @@ function stage2()
 end
 
 function stage3()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     local acc=3+sin(t*0.04)*2.5
     while t-spawn_t>=acc do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(spawn_t*0.4)*0.2*8.8,dy=sin(spawn_t*0.4)*0.2*8.8,bt=spawn_t+acc})
@@ -26,29 +30,47 @@ function stage3()
 end
 
 function stage4()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=3 do
         ins(bullets,{x=320/2+cos(spawn_t*0.09)*34,y=200/2-40+sin(spawn_t*0.12)*12,dx=cos(spawn_t*0.07)*0.1*8.8,dy=sin(spawn_t*0.09)*0.1*8.8,bt=spawn_t+3})
         spawn_t=spawn_t+3
     end
+
+    spec.spawner1.x=320/2+cos((t-3)*0.09)*34
+    spec.spawner1.y=200/2-40+sin((t-3)*0.12)*12
 end
 
 function stage5()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=2 do
         ins(bullets,{x=320/2+cos(spawn_t*0.02)*34,y=200/2-40+sin(spawn_t*0.03)*12,dx=cos(spawn_t*0.22)*0.1*8.8,dy=sin(spawn_t*0.35)*0.1*8.8,bt=spawn_t+2})
         spawn_t=spawn_t+2
     end
+
+    spec.spawner1.x=320/2+cos((t-2)*0.02)*34
+    spec.spawner1.y=200/2-40+sin((t-2)*0.03)*12
 end
 
 function stage6()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=12 do
         for i=0,10-1 do
         ins(bullets,{x=320/2+cos(spawn_t*0.3)*34,y=200/2-40+sin(spawn_t*0.2)*12,dx=cos(i*2*math.pi/10)*0.1*8.8,dy=sin(i*2*math.pi/10)*0.1*8.8,bt=spawn_t+12})
         end
         spawn_t=spawn_t+12
     end
+
+    spec.spawner1.x=320/2+cos((spawn_t-12)*0.3)*34
+    spec.spawner1.y=200/2-40+sin((spawn_t-12)*0.2)*12
 end
 
 function stage7()
+    spec.spawner1=spec.spawner1 or {x=320/2-40,y=200/2-40}
+    spec.spawner2=spec.spawner2 or {x=320/2+40,y=200/2-40}
+
     while t-spawn_t>=3 do
         local acc=151.8
         local sep=4
@@ -64,6 +86,9 @@ function stage7()
 end
 
 function stage8()
+    spec.spawner1=spec.spawner1 or {x=320/2-40,y=200/2-40}
+    spec.spawner2=spec.spawner2 or {x=320/2+40,y=200/2-40}
+
     while t-spawn_t>=0 do
         local acc=14.1
         local sphere=24
@@ -76,9 +101,15 @@ function stage8()
         end
         spawn_t=spawn_t+48
     end
+
+    spec.spawner1.x=320/2-sin((t-48)*0.01)*40
+    spec.spawner2.x=320/2+sin((t-48)*0.01)*40
 end
 
 function stage9()
+    spec.spawner1=spec.spawner1 or {x=320/2-40,y=200/2-40}
+    spec.spawner2=spec.spawner2 or {x=320/2+40,y=200/2-40}
+
     while t-spawn_t>=3 do
         local acc=13.8
         local sep=4.2
@@ -94,6 +125,8 @@ function stage9()
 end
 
 function stage10()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=3 do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(spawn_t*131.1)*0.1*8.8,dy=sin(spawn_t*131.1)*0.1*8.8,bt=spawn_t+3})
         if spawn_t%48<12 then
@@ -106,6 +139,10 @@ function stage10()
 end
 
 function stage11()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+    spec.spawner2=spec.spawner2 or {x=320/2,y=200/2-40}
+    spec.spawner3=spec.spawner3 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=3 do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(spawn_t*5.12)*0.2*8.8,dy=sin(spawn_t*5.12)*0.2*8.8,bt=spawn_t+3})
         if spawn_t%48<24 then
@@ -121,9 +158,14 @@ function stage11()
         end
         spawn_t=spawn_t+3
     end
+
+    spec.spawner2.x=320/2-40+cos((t-3)*0.12)*34
+    spec.spawner3.x=320/2+40+cos((t-3)*0.12)*34
 end
 
 function stage12()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     if not spec.homer then
         spec.homer={x=320/2,y=200/2-40,bt=spawn_t}
         ins(bullets,spec.homer)
@@ -186,6 +228,8 @@ xxxx
 ]]
 
 function stage14()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     local pause=33
     if love.update==menu_update or love.update==title_update then pause=0 end
     while t-spawn_t>=pause do
@@ -218,6 +262,10 @@ function stage14()
 end
 
 function stage15()
+    spec.spawner1=spec.spawner1 or {x=320/2-90,y=200/2-20}
+    spec.spawner2=spec.spawner2 or {x=320/2,y=200/2-20}
+    spec.spawner3=spec.spawner3 or {x=320/2+90,y=200/2-20}
+
     while t-spawn_t>=0 do
         for k=0,3-1 do
         local a2=spawn_t*0.2+k*pi/4
@@ -239,6 +287,8 @@ function stage15()
 end
 
 function stage16()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     spec.sc_t=spec.sc_t or t
     spec.pb=spec.pb or {} --persistent bullets
     spec.spawn_t2=spec.spawn_t2 or spawn_t
@@ -264,10 +314,15 @@ function stage16()
         
         spec.spawn_t2=spec.spawn_t2+4
     end
+
+    spec.spawner1.x=320/2+cos((t-spec.sc_t)*0.02)*90
+    spec.spawner1.y=200/2+sin((t-spec.sc_t)*0.02)*90
 end
 
 -- doesn't use shared bullet update
 function stage17()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2}
+
     spec.bullet_formations=spec.bullet_formations or {}
     while t-spawn_t>=24 and #spec.bullet_formations<14 do
         local a=spawn_t*0.8
@@ -310,6 +365,8 @@ function stage17()
 end
 
 function stage18()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     spec.sc_t=spec.sc_t or t
     local a=(t-spec.sc_t)*0.015
     for i,b in ipairs(spec.pb) do
@@ -326,9 +383,18 @@ function stage18()
         
         spawn_t=spawn_t+7
     end
+
+    spec.spawner1.x=320/2+cos((t-spec.sc_t)*0.02+pi/2)*100
+    spec.spawner1.y=200/2+sin((t-spec.sc_t)*0.02+pi/2)*100
 end
 
 function stage19()
+    local s=1
+    while spec['spawner'..tostring(s)] do
+        spec['spawner'..tostring(s)]=nil
+        s=s+1
+    end
+
     spec.b2w6_a=spec.b2w6_a or {}
     spec.spawn_t2=spec.spawn_t2 or t    
 
@@ -346,6 +412,7 @@ function stage19()
     for i=0,0 do
         ins(bullets,{x=swipe.x-cos(swipe.a)*(120-swipe.d)+cos(swipe.a+pi/2)*(i)*28,y=swipe.y-sin(swipe.a)*(120-swipe.d)+sin(swipe.a+pi/2)*(i)*28,dx=0,dy=0,bt=spawn_t+2})
         ins(swipe,bullets[#bullets])
+        spec['spawner'..tostring(j)]={x=swipe.x-cos(swipe.a)*(120-swipe.d)+cos(swipe.a+pi/2)*(i)*28,y=swipe.y-sin(swipe.a)*(120-swipe.d)+sin(swipe.a+pi/2)*(i)*28}
     end
     swipe.d=swipe.d+6
     end
@@ -365,6 +432,9 @@ function stage19()
 end
 
 function stage20()
+    spec.spawner1=spec.spawner1 or {x=320/2-60,y=200/2-40}
+    spec.spawner2=spec.spawner2 or {x=320/2+60,y=200/2-40}
+
     while t-spawn_t>=1 do
         local a=(spawn_t)*143.402
         ins(bullets,{x=320/2-60,y=200/2-40,dx=cos(a)*1.25,dy=sin(a)*1.25,bt=spawn_t+1})
@@ -374,6 +444,8 @@ function stage20()
 end
 
 function stage21()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=35/2}
+
     if not spec.b4w3_a then spec.b4w3_a={} end
     while t-spawn_t>=0 do
         local a=0
@@ -393,6 +465,8 @@ function stage21()
 end
 
 function stage22()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     if not spec.pb2 then
         spec.sc_t=spec.sc_t or t
         spec.pb2={}
@@ -418,9 +492,14 @@ function stage22()
         
         spawn_t=spawn_t+5
     end
+
+    spec.spawner1.x=320/2+cos((t-spec.sc_t)*0.02+pi/2)*100
+    spec.spawner1.y=200/2+sin((t-spec.sc_t)*0.02+pi/2)*100
 end
 
 function stage23()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     spec.acc=spec.acc or t*28.9
     while t-spawn_t>=1 do
         ins(bullets,{x=320/2,y=200/2-40,dx=cos(spec.acc*0.12)*0.2*8.8,dy=sin(spec.acc*0.12)*0.2*8.8,bt=spawn_t+1})
@@ -430,6 +509,8 @@ function stage23()
 end
 
 function stage24()
+    spec.spawner1=spec.spawner1 or {x=320/2,y=200/2-40}
+
     while t-spawn_t>=1 do
         ins(bullets,{x=320/2+cos(spawn_t*0.4)*40,y=200/2-40,dx=cos(spawn_t*131.1)*0.2*8.8,dy=sin(spawn_t*131.1)*0.2*8.8,bt=spawn_t+1})
         if spawn_t%48<12 then
@@ -439,6 +520,8 @@ function stage24()
         end
         spawn_t=spawn_t+1
     end
+
+    spec.spawner1.x=320/2+cos((t-1)*0.4)*40
 end
 
 -- victory screen

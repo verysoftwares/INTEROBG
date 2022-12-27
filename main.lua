@@ -26,6 +26,9 @@ circuit=1
 
 function love.load()
     title=lg.newImage('INTEROBG.png')
+    sparkle1=lg.newImage('sparkle1.png')
+    sparkle2=lg.newImage('sparkle2.png')
+    sparkle3=lg.newImage('sparkle3.png')
 end
 
 function love.keypressed(key)
@@ -51,6 +54,8 @@ function main_draw()
     end
 
     player_draw()
+
+    spawner_draw()
 
     overlay_draw()
 
@@ -115,6 +120,8 @@ function title_draw()
     for i,b in ipairs(bullets) do
         bullet_draw(b)
     end
+
+    spawner_draw()
 
     if title_t then
         title_msg_draw(title_t)
