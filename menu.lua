@@ -136,21 +136,29 @@ function hiscore_draw(i)
     fg(0.8*255,0.4*255,0.4*255)
     lg.print(fmt('high:',0),20+(60+12)*i+2,16+8-2+50+1-6)
     fg(0.7*255,0.3*255,0.3*255)
-    lg.print(fmt('%.9d',hiscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8-6)
+    evenprint(fmt('%.9d',hiscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8-6)
     fg(0.6*255,0.2*255,0.2*255)
     lg.print(fmt('last:'),20+(60+12)*i+2,16+8-2+50+1+8+8-6)
     fg(0.5*255,0.1*255,0.1*255)
-    lg.print(fmt('%.9d',lastscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8+8+8-6)
+    evenprint(fmt('%.9d',lastscores[i+1]),20+(60+12)*i+2,16+8-2+50+1+8+8+8-6)
 
     -- lower row
     fg(0.8*255,0.4*255,0.4*255)
     lg.print(fmt('high:',0),20+(60+12)*i+2,16+8-2+50+36+50+1-6)
     fg(0.7*255,0.3*255,0.3*255)
-    lg.print(fmt('%.9d',hiscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8-6)
+    evenprint(fmt('%.9d',hiscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8-6)
     fg(0.6*255,0.2*255,0.2*255)
     lg.print(fmt('last:'),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8-6)
     fg(0.5*255,0.1*255,0.1*255)
-    lg.print(fmt('%.9d',lastscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8+8-6)
+    evenprint(fmt('%.9d',lastscores[i+1+4]),20+(60+12)*i+2,16+8-2+50+36+50+1+8+8+8-6)
+end
+
+function evenprint(msg,mx,my)
+    for i=1,#msg do
+    local ox=0
+    if sub(msg,i,i)=='1' then ox=1 end
+    lg.print(sub(msg,i,i),mx+(i-1)*6+ox,my)
+    end
 end
 
 local circuit_titles={
