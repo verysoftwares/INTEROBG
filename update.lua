@@ -45,6 +45,17 @@ function stage_update()
     timer_update()
 end
 
+function bullet_update()
+    for i=#bullets,1,-1 do
+        local b=bullets[i]
+        b.x=b.x+b.dx*(t-b.bt); b.y=b.y+b.dy*(t-b.bt)
+        b.bt=t
+        if b.x<-6-1 or b.y<-6-1 or b.x>=320+1 or b.y>=200+1 then
+            rem(bullets,i)
+        end
+    end
+end
+
 function timer_update()
     if stage<=maxstages() then
         timer=timer-1
@@ -89,17 +100,6 @@ function timer_update()
 
             spawn_t=t+tmult
         end 
-    end
-end
-
-function bullet_update()
-    for i=#bullets,1,-1 do
-        local b=bullets[i]
-        b.x=b.x+b.dx*(t-b.bt); b.y=b.y+b.dy*(t-b.bt)
-        b.bt=t
-        if b.x<-6-1 or b.y<-6-1 or b.x>=320+1 or b.y>=200+1 then
-            rem(bullets,i)
-        end
     end
 end
 
