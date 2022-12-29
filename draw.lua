@@ -44,6 +44,8 @@ function player_draw()
     line(x+2,y-2,x+2-5,y-2+9)
     line(x+2-5,y-2+9,x+2,y-2+7)
     line(x+2+5,y-2+9,x+2,y-2+7)
+    -- to fix annoying asymmetry
+    lg.point(x+2+6-1,y-2+7+2)
 
     -- grazebox
     fg(0.4*255,0.4*255,0.8*255)
