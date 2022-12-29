@@ -334,6 +334,7 @@ function help_draw()
     end
 
     if helpscr==3 then
+        local oy=3
         bg(0.2*255,0.2*255,0.6*255)
         fg(0.4*255,0.4*255,0.8*255)
         for i=16,200,48 do
@@ -343,18 +344,18 @@ function help_draw()
         header_draw('Page 3 of 4: Scoring',0,true)
 
         for i,v in ipairs(help_page_3) do
-        drop_shadow_center_print(v,12+(i-1)*10)
+        drop_shadow_center_print(v,12+(i-1)*10+oy)
         end
 
         fg(0.1*255,0.1*255,0.1*255)
-        rect('fill',320/2-52/2+1,16+3*10+10+1,52-2,52-2)
+        rect('fill',320/2-52/2+1,16+3*10+10+1+oy,52-2,52-2)
         fg(0.4*255,0.8*255,0.4*255)
-        rect('line',320/2-52/2,16+3*10+10,52,52)
+        rect('line',320/2-52/2,16+3*10+10+oy,52,52)
 
-        spec.demo_bullet=spec.demo_bullet or {x=320/2+52/2-8-10,y=16+4*10+1}
+        spec.demo_bullet=spec.demo_bullet or {x=320/2+52/2-8-10,y=16+4*10+1+oy}
         spec.labels=spec.labels or {}
 
-        local px,py=320/2-52/2+1+32-2,16+3*10+10+1+32-2
+        local px,py=320/2-52/2+1+32-2,16+3*10+10+1+32-2+oy
 
         if AABB(spec.demo_bullet.x,spec.demo_bullet.y,6,6,px+3-15,py+3-15,30,30) then
             if not spec.demo_bullet.grazed and not spec.demo_bullet.safe then
@@ -365,14 +366,14 @@ function help_draw()
         for i=#spec.labels,1,-1 do
             local l=spec.labels[i]
             l.x=l.x+(320/2+52/2-l.x)*0.01
-            l.y=l.y+(16+3*10+10+52-l.y)*0.01
+            l.y=l.y+(16+3*10+10+52+oy-l.y)*0.01
             if l.x+font:getWidth(l[1])>320/2+52/2+1 then
                 rem(spec.labels,i)
             end
         end
         spec.demo_bullet.x=spec.demo_bullet.x-0.5
         spec.demo_bullet.y=spec.demo_bullet.y+0.5
-        if spec.demo_bullet.x<=320/2-52/2+1+1 then spec.demo_bullet={x=320/2+52/2-8-10,y=16+4*10+1} end
+        if spec.demo_bullet.x<=320/2-52/2+1+1 then spec.demo_bullet={x=320/2+52/2-8-10,y=16+4*10+1+oy} end
         
         bullet_draw(spec.demo_bullet)
 
