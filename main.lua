@@ -232,7 +232,7 @@ function help_draw()
         rect('fill',0,i,320,24)
     end
 
-    header_draw('Page 1: Gameplay elements',0,true)
+    header_draw('Page 1 of 4: Gameplay elements',0,true)
 
     local ox,oy=24,16
 
@@ -294,7 +294,7 @@ function help_draw()
             rect('fill',0,i,320,24)
         end
 
-        header_draw('Page 2: Game progression',0,true)
+        header_draw('Page 2 of 4: Game progression',0,true)
 
         for i,v in ipairs(help_page_2) do
         drop_shadow_center_print(v,24+(i-1)*10)
@@ -340,7 +340,7 @@ function help_draw()
             rect('fill',0,i,320,24)
         end
 
-        header_draw('Page 3: Scoring',0,true)
+        header_draw('Page 3 of 4: Scoring',0,true)
 
         for i,v in ipairs(help_page_3) do
         drop_shadow_center_print(v,12+(i-1)*10)
@@ -391,7 +391,7 @@ function help_draw()
             rect('fill',0,i,320,24)
         end
 
-        header_draw('Page 4: Tips',0,true)
+        header_draw('Page 4 of 4: Tips',0,true)
 
         for i,v in ipairs(help_page_4) do
         drop_shadow_center_print(v,36+(i-1)*10)
