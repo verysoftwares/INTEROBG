@@ -180,7 +180,7 @@ end
 function help_draw()
     _G['helpscr'..tostring(helpscr)]()
     
-    header_draw('Left/right to navigate help',200-10,true)
+    header_draw('Left/right to navigate help, Esc to return',200-10,true)
 
     while love.timer.getTime()-dt<1/60 do
     end
