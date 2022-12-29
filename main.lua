@@ -386,6 +386,7 @@ function help_draw()
     end
 
     if helpscr==4 then
+        local oy=4
         bg(0.6*255,0.2*255,0.2*255)
         fg(0.8*255,0.4*255,0.4*255)
         for i=16,200,48 do
@@ -395,7 +396,7 @@ function help_draw()
         header_draw('Page 4 of 4: Tips',0,true)
 
         for i,v in ipairs(help_page_4) do
-        drop_shadow_center_print(v,36+(i-1)*10)
+        drop_shadow_center_print(v,36+(i-1)*10+oy)
         end
     end
 
