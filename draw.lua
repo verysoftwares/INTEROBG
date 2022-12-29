@@ -31,25 +31,28 @@ function bullet_draw(bl)
     line(bl.x+4,bl.y,bl.x+4,bl.y+3)
 end
 
-function player_draw()
+function player_draw(px,py,nograze)
+    px=px or x; py=py or y
     fg(0.8*255,0.4*255,0.4*255)
 
     fg(0.4*255,0.4*255,0.8*255)
-    if love.update==wait then fg(0.8*255,0.8*255,0.8*255) end
-    rect('fill',x+1,y+1+1,3,3)
+    if love.update==wait then fg(0.4*255,0.8*255,0.4*255) end
+    rect('fill',px+1,py+1+1,3,3)
 
     fg(0.8*255,0.4*255,0.4*255)
-    if love.update==wait then fg(0.8*255,0.8*255,0.8*255) end
-    line(x+2,y-2,x+2+5,y-2+9)
-    line(x+2,y-2,x+2-5,y-2+9)
-    line(x+2-5,y-2+9,x+2,y-2+7)
-    line(x+2+5,y-2+9,x+2,y-2+7)
+    if love.update==wait then fg(0.4*255,0.8*255,0.4*255) end
+    line(px+2,py-2,px+2+5,py-2+9)
+    line(px+2,py-2,px+2-5,py-2+9)
+    line(px+2-5,py-2+9,px+2,py-2+7)
+    line(px+2+5,py-2+9,px+2,py-2+7)
     -- to fix annoying asymmetry
-    lg.point(x+2+6-1,y-2+7+2)
+    lg.point(px+2+6-1,py-2+7+2)
 
     -- grazebox
+    if not nograze then
     fg(0.4*255,0.4*255,0.8*255)
-    rect('line',x+3-15,y+3-15,30,30)
+    rect('line',px+3-15,py+3-15,30,30)
+    end
 end
 
 function spawner_draw()
@@ -96,9 +99,10 @@ function tutor_draw()
     end
 end
 
-function header_draw()
+function header_draw(forcems,xy)
+    xy=xy or 0
     fg(0.4*255,0.8*255,0.4*255)
-    rect('fill',0,0,320,10)
+    rect('fill',0,xy,320,10)
 
     fg(0.1*255,0.1*255,0.1*255)
     local msg='this is the 15th verysoftwares game this year?! aRE YOU SERIOUS?!'
@@ -136,7 +140,8 @@ function header_draw()
         msg='you\'re not supposed to be here yet?! go back with Esc?!' 
     end
 
-    lg.print(msg,320/2-font:getWidth(msg)/2+sin(t*0.004*8.8)*24,0)
+    msg=forcems or msg
+    lg.print(msg,320/2-font:getWidth(msg)/2+sin(t*0.004*8.8)*24,0+xy)
 end
 
 function score_draw()

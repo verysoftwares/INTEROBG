@@ -1,4 +1,4 @@
-local title_sel={i=1,'Play','Register','Quit'}
+local title_sel={i=1,'Play','Help','Register','Quit'}
 
 function title_msg_draw(title_t)
     for i,c in ipairs(title_sel) do
@@ -16,7 +16,8 @@ function title_msg_draw(title_t)
             local tx=120
             if i==1 then tx=120-25 end
             if i==2 then tx=120-10 end
-
+            if i==4 then tx=120+5 end
+            
             -- blue edges of text
             fg(0.2*255,0.4*255,0.8*255)
             lg.print(msg,tx-1,200-120+(i-1)*16)
@@ -63,6 +64,7 @@ end
 function title_lock()
     local sel=title_sel[title_sel.i]
     if sel=='Play' then love.update=menu_update; love.draw=menu_draw; bullets={} end
+    if sel=='Help' then love.update=help_update; love.draw=help_draw; bullets={} end
     if sel=='Register' then love.update=register_update; love.draw=register_draw end
     if sel=='Quit' then love.event.quit() end
 end
