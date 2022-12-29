@@ -17,7 +17,7 @@ function title_msg_draw(title_t)
             if i==1 then tx=120-25 end
             if i==2 then tx=120-10 end
             if i==4 then tx=120+5 end
-            
+
             -- blue edges of text
             fg(0.2*255,0.4*255,0.8*255)
             lg.print(msg,tx-1,200-120+(i-1)*16)
@@ -126,4 +126,18 @@ function register_msg_draw(lines)
         lg.print(m,320/2-font:getWidth(m)/2,48+(i-1)*10+6)
         end
     end
+end
+
+function drop_shadow_print(msg,mx,my)
+    fg(0.2*255,0.2*255,0.2*255)
+    lg.print(msg,mx+1,my+1)
+    fg(0.8*255,0.8*255,0.8*255)
+    lg.print(msg,mx,my)
+end
+
+function drop_shadow_center_print(msg,my)
+    fg(0.2*255,0.2*255,0.2*255)
+    lg.print(msg,320/2-font:getWidth(msg)/2+1,my+1)
+    fg(0.8*255,0.8*255,0.8*255)
+    lg.print(msg,320/2-font:getWidth(msg)/2,my)
 end

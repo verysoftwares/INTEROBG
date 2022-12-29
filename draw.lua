@@ -99,7 +99,7 @@ function tutor_draw()
     end
 end
 
-function header_draw(forcems,xy)
+function header_draw(forcems,xy,noanim)
     xy=xy or 0
     fg(0.4*255,0.8*255,0.4*255)
     rect('fill',0,xy,320,10)
@@ -141,7 +141,9 @@ function header_draw(forcems,xy)
     end
 
     msg=forcems or msg
-    lg.print(msg,320/2-font:getWidth(msg)/2+sin(t*0.004*8.8)*24,0+xy)
+    local sx=sin(t*0.004*8.8)*24
+    if noanim then sx=0 end
+    lg.print(msg,320/2-font:getWidth(msg)/2+sx,0+xy)
 end
 
 function score_draw()
