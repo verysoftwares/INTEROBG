@@ -97,7 +97,6 @@ register_lines={
     'you can get 4 additional circuits by going to',
     '>> https://verysoftwares.itch.io/interobg <<',
     'and paying the 2 euro registration fee.',
-    '(available on New Year\'s)',
     '',
     'your support is much appreciated',
     'so i can continue making games.',
