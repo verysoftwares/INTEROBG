@@ -7,9 +7,9 @@ function player_update()
     if x+1>320-3 then x=320-3-1 end; if x+1<0 then x=-1 end
     if y+1+1>200-3 then y=200-3-2 end; if y+1+1<0 then y=-2 end
     
-    if press('pagedown') or (press('z') and not tapz) then tmult=tmult*0.991; if stage~=25 and tmult<1 then red_check=false end; if not pgshow then pgshow=true end; if not pgdtutor then pgdtutor=true end end
+    if press('pagedown') or (press('z') and not tapz) then tmult=tmult*0.991; if stage~=25 and tmult<1 then red_check=false end; pgshow=t; if not pgdtutor then pgdtutor=true end end
     if not press('z') then tapz=false end
-    if press('pageup') or press('x') then tmult=tmult*(1/0.991); if not pgshow then pgshow=true end; if not pgututor then pgututor=true end end
+    if press('pageup') or press('x') then tmult=tmult*(1/0.991); pgshow=t; if not pgututor then pgututor=true end end
     
     if (pgshow or (rtutor and ltutor and dtutor and ututor)) and not ftutor then
         if stage==1 and (rtutor and ltutor and dtutor and ututor) then

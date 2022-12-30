@@ -73,9 +73,9 @@ end
 function overlay_draw()
     tutor_draw()
 
-    if pgshow then
+    if pgshow and t-pgshow<64 then
         fg(0.8*255,0.8*255,0.8*255)
-        lg.print(fmt('Time is running at %.2fx speed',tmult),8,16)
+        lg.print(fmt('%.2fx',tmult),x+4-font:getWidth(fmt('%.2fx',tmult))/2,y+8)
     end
 
     header_draw()
