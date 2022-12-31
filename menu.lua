@@ -31,6 +31,8 @@ function circuit_lock()
     spec={}
 
     red_check=true
+    pgshow=nil
+    ftutor=nil
 
     if circuit==1 then
         bullets={{10*2,120},{20*2,160},{40*2,180}}

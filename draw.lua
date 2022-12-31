@@ -94,7 +94,7 @@ function tutor_draw()
     if ftutor and not pgdtutor and not pgututor then
         lg.print('Z',x+3-font:getWidth('Z')/2,y+6+1)
     end
-    if pgdtutor and not pgututor then
+    if ftutor and pgdtutor and not pgututor then
         lg.print('X',x+3-font:getWidth('X')/2,y-font:getHeight('X'))
     end
 end
